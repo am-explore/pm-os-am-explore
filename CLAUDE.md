@@ -111,9 +111,16 @@ These are reviewer/monitor **persona definitions** — invoke them when you need
 
 ## Templates
 
-- PRD template: `templates/PRD-template.md`
+- PRD template (full, with ISC acceptance criteria + multi-agent review checklist): `templates/PRD-template.md`
+- PRD template (lean, 1.5-2pg scannable — use when the full PRD is overkill): `templates/prd-lean-thesis.md`
 - Experiment template: `templates/experiment-template.md`
-- Decision template: `templates/decision-template.md`
+- A/B test analysis (ship/kill decision from experiment results): `templates/ab-test-analysis.md`
+- ROI / impact estimation (business case before committing eng time): `templates/roi-impact-estimation.md`
+- Survey design (PMF, feature feedback, ProfitWell rules): `templates/survey-design.md`
+- Survey analysis (thematic coding of open-ended responses): `templates/survey-analysis.md`
+- Decision template (single decision, quick log): `templates/decision-template.md`
+- DACI decision doc (multi-stakeholder decision with clear roles): `templates/daci-decision-doc.md`
+- Weekly planning ("W" method — 3 priorities, what you're saying no to): `templates/weekly-planning-w-method.md`
 - Routine template: `templates/routine-template.md`
 
 ## Decision Log

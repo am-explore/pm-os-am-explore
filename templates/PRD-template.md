@@ -48,6 +48,27 @@
 
 ---
 
+## Acceptance Criteria (ISC — Ideal State Criteria)
+> Inspired by the Ideal State Criteria discipline from [danielmiessler/TheAlgorithm](https://github.com/danielmiessler/TheAlgorithm) — not that repo's content, just its method. Every criterion below must be binary-testable (true/false, pass/fail), not a matter of opinion. This is what makes a PRD "done" instead of merely "read."
+
+| # | Type | Criterion | Test |
+|---|------|-----------|------|
+| F1 | Functional | | |
+| S1 | Structural | | |
+| B1 | Behavioral | | |
+| N1 | Negative constraint (must NOT happen) | | |
+
+**Type key:** **[F]unctional** — the system does X. **[S]tructural** — the system is built/shaped a certain way (schema, architecture, permission model). **[B]ehavioral** — the system responds to a specific input/sequence a specific way. **[N]egative constraint** — an explicit thing that must not happen (a regression, a side effect, a boundary that must hold).
+
+**Before marking this PRD ready for review, self-check against three gates:**
+- **Coverage** — does every facet of "done" have at least one ISC covering it? (no silent gaps)
+- **Tightness** — could any single criterion be deleted and the spec still fully describe success? If yes, cut it (no padding/redundancy)
+- **Uniqueness** — could a meaningfully different implementation satisfy this same criteria set? If yes, the spec is under-determined — tighten it
+
+A PRD that passes all three gates is one an engineer (or an AI reviewer) can't rubber-stamp without either pointing to an unmet criterion, or having no objection left to make.
+
+---
+
 ## Success Metrics
 | Metric | Current | Target | Timeframe | Tool |
 |--------|---------|--------|-----------|------|
