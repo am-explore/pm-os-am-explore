@@ -1,0 +1,30 @@
+name: Auto-close Pull Requests
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close PR with friendly message
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: `👋 Thanks for your interest in PM OS!\n\nThis is a **template repository** — it's designed to be cloned or forked for your own use, not modified via pull requests.\n\n**How to use PM OS:**\n1. Click the green **"Use this template"** button at the top of the repo\n2. Or clone it: \`git clone https://github.com/agentmart/pm-os.git\`\n3. Fill in the \`context-library/\` files with your product context\n\n**Have a suggestion or found a bug?** Please [open an issue](https://github.com/agentmart/pm-os/issues) instead — we read every one.\n\nClosing this PR automatically. Thanks for understanding! 🙏`
+            });
+
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              state: 'closed'
+            });
