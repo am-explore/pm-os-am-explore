@@ -10,6 +10,39 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+<!-- GoatCounter: privacy-first analytics, no cookies. Dashboard: https://product-line.goatcounter.com/ -->
+<script data-goatcounter="https://product-line.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+  // Session-duration signal: GoatCounter counts pageviews natively, but a
+  // single-page site like this one needs an explicit event to see how long
+  // people actually stayed. Sent once, on tab-hide or page-unload.
+  (function () {
+    var start = Date.now();
+    var sent = false;
+    function sendDuration() {
+      if (sent) return;
+      sent = true;
+      var seconds = Math.round((Date.now() - start) / 1000);
+      var bucket =
+        seconds < 15 ? '0-15s' :
+        seconds < 60 ? '15-60s' :
+        seconds < 180 ? '1-3min' :
+        seconds < 600 ? '3-10min' : '10min+';
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({
+          path: 'duration: ' + bucket,
+          title: 'Session duration',
+          event: true
+        });
+      }
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') sendDuration();
+    });
+    window.addEventListener('pagehide', sendDuration);
+  })();
+</script>
+
 <style>
   :root {
     --paper: #F2F4F7;
@@ -430,10 +463,10 @@
       specifically.
     </p>
     <div class="repo-pills">
-      <a class="repo-pill pmos" href="https://github.com/am-explore/pm-os-am-explore" target="_blank" rel="noopener">
+      <a class="repo-pill pmos" href="https://github.com/am-explore/pm-os-am-explore" data-goatcounter-click="click:masthead:repo-pill-pmos" target="_blank" rel="noopener">
         <span class="dot"></span> pm-os-am-explore
       </a>
-      <a class="repo-pill aprf" href="https://github.com/am-explore/agent-production-readiness-framework" target="_blank" rel="noopener">
+      <a class="repo-pill aprf" href="https://github.com/am-explore/agent-production-readiness-framework" data-goatcounter-click="click:masthead:repo-pill-aprf" target="_blank" rel="noopener">
         <span class="dot"></span> agent-production-readiness-framework
       </a>
     </div>
@@ -526,27 +559,27 @@
       <div class="board">
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/discovery/SKILL-opportunity-solution-tree.md" target="_blank" rel="noopener">/discover</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/discovery/SKILL-opportunity-solution-tree.md" data-goatcounter-click="click:discover:/discover" target="_blank" rel="noopener">/discover</a>
           <span class="desc">Opportunity Solution Tree — research signal → validated opportunity</span>
         </div>
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/discovery/SKILL-user-interview.md" target="_blank" rel="noopener">/interview-prep</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/discovery/SKILL-user-interview.md" data-goatcounter-click="click:discover:/interview-prep" target="_blank" rel="noopener">/interview-prep</a>
           <span class="desc">User interview guide, built as a safari not a validation session</span>
         </div>
         <div class="row">
           <span class="kind">Reviewer</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/user-researcher.md" target="_blank" rel="noopener">user-researcher</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/user-researcher.md" data-goatcounter-click="click:discover:user-researcher" target="_blank" rel="noopener">user-researcher</a>
           <span class="desc">Critiques evidence quality and assumption risk</span>
         </div>
         <div class="row">
           <span class="kind">Watcher</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/risk-monitor.md" target="_blank" rel="noopener">risk-monitor</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/risk-monitor.md" data-goatcounter-click="click:discover:risk-monitor" target="_blank" rel="noopener">risk-monitor</a>
           <span class="desc">Scans early for dependency risk and blockers</span>
         </div>
         <div class="row">
           <span class="kind">Routine</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/user-feedback-synthesis.md" target="_blank" rel="noopener">user-feedback-synthesis</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/user-feedback-synthesis.md" data-goatcounter-click="click:discover:user-feedback-synthesis" target="_blank" rel="noopener">user-feedback-synthesis</a>
           <span class="desc">Wednesday 10am — aggregates incoming feedback into themes</span>
         </div>
       </div>
@@ -563,52 +596,52 @@
       <div class="board">
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/strategy/SKILL-product-strategy.md" target="_blank" rel="noopener">/strategy</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/strategy/SKILL-product-strategy.md" data-goatcounter-click="click:define:/strategy" target="_blank" rel="noopener">/strategy</a>
           <span class="desc">Product strategy canvas — vision, moat, bets and anti-bets</span>
         </div>
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-prd-writing.md" target="_blank" rel="noopener">/write-prd</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-prd-writing.md" data-goatcounter-click="click:define:/write-prd" target="_blank" rel="noopener">/write-prd</a>
           <span class="desc">Full PRD with multi-agent review built in</span>
         </div>
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-roadmap.md" target="_blank" rel="noopener">/roadmap</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-roadmap.md" data-goatcounter-click="click:define:/roadmap" target="_blank" rel="noopener">/roadmap</a>
           <span class="desc">Quarterly roadmap planning with explicit tradeoffs</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/PRD-template.md" target="_blank" rel="noopener">PRD-template.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/PRD-template.md" data-goatcounter-click="click:define:PRD-template.md" target="_blank" rel="noopener">PRD-template.md</a>
           <span class="desc">Full PRD, with ISC-style acceptance criteria</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/prd-lean-thesis.md" target="_blank" rel="noopener">prd-lean-thesis.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/prd-lean-thesis.md" data-goatcounter-click="click:define:prd-lean-thesis.md" target="_blank" rel="noopener">prd-lean-thesis.md</a>
           <span class="desc">1.5–2pg version, for when the full PRD is overkill</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/daci-decision-doc.md" target="_blank" rel="noopener">daci-decision-doc.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/daci-decision-doc.md" data-goatcounter-click="click:define:daci-decision-doc.md" target="_blank" rel="noopener">daci-decision-doc.md</a>
           <span class="desc">Multi-stakeholder decision doc with clear roles</span>
         </div>
         <div class="row">
           <span class="kind">Reviewer</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/exec-reviewer.md" target="_blank" rel="noopener">exec-reviewer</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/exec-reviewer.md" data-goatcounter-click="click:define:exec-reviewer" target="_blank" rel="noopener">exec-reviewer</a>
           <span class="desc">Strategic alignment and business impact</span>
         </div>
         <div class="row">
           <span class="kind">Reviewer</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/legal-reviewer.md" target="_blank" rel="noopener">legal-reviewer</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/legal-reviewer.md" data-goatcounter-click="click:define:legal-reviewer" target="_blank" rel="noopener">legal-reviewer</a>
           <span class="desc">Compliance risk and data handling flags</span>
         </div>
         <div class="row">
           <span class="kind">Debate</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/debate-facilitator.md" target="_blank" rel="noopener">/review-prd</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/debate-facilitator.md" data-goatcounter-click="click:define:/review-prd" target="_blank" rel="noopener">/review-prd</a>
           <span class="desc">All 7 reviewers critique, then debate-facilitator + synthesis-agent weigh in</span>
         </div>
         <div class="row">
           <span class="kind">Hook</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/prd-quality-gate.md" target="_blank" rel="noopener">prd-quality-gate</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/prd-quality-gate.md" data-goatcounter-click="click:define:prd-quality-gate" target="_blank" rel="noopener">prd-quality-gate</a>
           <span class="desc">Advisory check that fires after a PRD is drafted</span>
         </div>
       </div>
@@ -624,17 +657,17 @@
       <div class="board">
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/design/SKILL-product-design-review.md" target="_blank" rel="noopener">/design-review</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/design/SKILL-product-design-review.md" data-goatcounter-click="click:design:/design-review" target="_blank" rel="noopener">/design-review</a>
           <span class="desc">Structured critique of a mockup, flow, or prototype</span>
         </div>
         <div class="row">
           <span class="kind">Reviewer</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/designer-reviewer.md" target="_blank" rel="noopener">designer-reviewer</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/designer-reviewer.md" data-goatcounter-click="click:design:designer-reviewer" target="_blank" rel="noopener">designer-reviewer</a>
           <span class="desc">UX quality, design-system fit, flow gaps</span>
         </div>
         <div class="row">
           <span class="kind">Watcher</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/assumption-validator.md" target="_blank" rel="noopener">assumption-validator</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/assumption-validator.md" data-goatcounter-click="click:design:assumption-validator" target="_blank" rel="noopener">assumption-validator</a>
           <span class="desc">Names the assumption you're betting on before you build</span>
         </div>
       </div>
@@ -650,27 +683,27 @@
       <div class="board">
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/automation/SKILL-routine-setup.md" target="_blank" rel="noopener">/setup-routine</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/automation/SKILL-routine-setup.md" data-goatcounter-click="click:build:/setup-routine" target="_blank" rel="noopener">/setup-routine</a>
           <span class="desc">Turn a recurring build-phase task into a scheduled routine</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/decision-template.md" target="_blank" rel="noopener">decision-template.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/decision-template.md" data-goatcounter-click="click:build:decision-template.md" target="_blank" rel="noopener">decision-template.md</a>
           <span class="desc">Single-decision quick log</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/roi-impact-estimation.md" target="_blank" rel="noopener">roi-impact-estimation.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/roi-impact-estimation.md" data-goatcounter-click="click:build:roi-impact-estimation.md" target="_blank" rel="noopener">roi-impact-estimation.md</a>
           <span class="desc">Business case before committing engineering time</span>
         </div>
         <div class="row">
           <span class="kind">Reviewer</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/engineer-reviewer.md" target="_blank" rel="noopener">engineer-reviewer</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/engineer-reviewer.md" data-goatcounter-click="click:build:engineer-reviewer" target="_blank" rel="noopener">engineer-reviewer</a>
           <span class="desc">Feasibility, tech debt, implementation risk</span>
         </div>
         <div class="row">
           <span class="kind">Log</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/decision-log/README.md" target="_blank" rel="noopener">decision-log/</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/decision-log/README.md" data-goatcounter-click="click:build:decision-log/" target="_blank" rel="noopener">decision-log/</a>
           <span class="desc">Institutional memory — every decision, with rationale</span>
         </div>
       </div>
@@ -693,22 +726,22 @@
       <div class="board">
         <div class="row">
           <span class="kind">Checklist</span>
-          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/checklists/PROMOTION_GATE_CHECKLIST.md" target="_blank" rel="noopener">PROMOTION_GATE_CHECKLIST.md</a>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/checklists/PROMOTION_GATE_CHECKLIST.md" data-goatcounter-click="click:gate-check:PROMOTION_GATE_CHECKLIST.md" target="_blank" rel="noopener">PROMOTION_GATE_CHECKLIST.md</a>
           <span class="desc">Sign-off record for all 4 promotion gates</span>
         </div>
         <div class="row">
           <span class="kind">Doc</span>
-          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/docs/promotion_gates.md" target="_blank" rel="noopener">promotion_gates.md</a>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/docs/promotion_gates.md" data-goatcounter-click="click:gate-check:promotion_gates.md" target="_blank" rel="noopener">promotion_gates.md</a>
           <span class="desc">Golden evals → shadow traffic → canaried HITL → telemetry</span>
         </div>
         <div class="row">
           <span class="kind">Schema</span>
-          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/schemas/eval_benchmark_schema.json" target="_blank" rel="noopener">eval_benchmark_schema.json</a>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/schemas/eval_benchmark_schema.json" data-goatcounter-click="click:gate-check:eval_benchmark_schema.json" target="_blank" rel="noopener">eval_benchmark_schema.json</a>
           <span class="desc">Machine-readable format for golden eval benchmarks</span>
         </div>
         <div class="row">
           <span class="kind">Example</span>
-          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/examples/eval_benchmark_examples.json" target="_blank" rel="noopener">eval_benchmark_examples.json</a>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/examples/eval_benchmark_examples.json" data-goatcounter-click="click:gate-check:eval_benchmark_examples.json" target="_blank" rel="noopener">eval_benchmark_examples.json</a>
           <span class="desc">Sample cases across reasoning, tool-calling, safety, boundary</span>
         </div>
       </div>
@@ -724,12 +757,12 @@
       <div class="board">
         <div class="row">
           <span class="kind">Script</span>
-          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/scripts/drift_evaluator.py" target="_blank" rel="noopener">drift_evaluator.py</a>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/scripts/drift_evaluator.py" data-goatcounter-click="click:drift-watch:drift_evaluator.py" target="_blank" rel="noopener">drift_evaluator.py</a>
           <span class="desc">LLM-judge worker with a circuit breaker on pass-rate drift</span>
         </div>
         <div class="row">
           <span class="kind">Example</span>
-          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/examples/sample_production_traces.jsonl" target="_blank" rel="noopener">sample_production_traces.jsonl</a>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/examples/sample_production_traces.jsonl" data-goatcounter-click="click:drift-watch:sample_production_traces.jsonl" target="_blank" rel="noopener">sample_production_traces.jsonl</a>
           <span class="desc">Sample trace file to run the evaluator against out of the box</span>
         </div>
       </div>
@@ -751,12 +784,12 @@
       <div class="board">
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-launch-plan.md" target="_blank" rel="noopener">/launch-plan</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-launch-plan.md" data-goatcounter-click="click:launch:/launch-plan" target="_blank" rel="noopener">/launch-plan</a>
           <span class="desc">Full launch checklist and GTM plan</span>
         </div>
         <div class="row">
           <span class="kind">Hook</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/launch-readiness.md" target="_blank" rel="noopener">launch-readiness</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/launch-readiness.md" data-goatcounter-click="click:launch:launch-readiness" target="_blank" rel="noopener">launch-readiness</a>
           <span class="desc">Pre-launch quality gate, advisory by default</span>
         </div>
       </div>
@@ -772,22 +805,22 @@
       <div class="board">
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-north-star.md" target="_blank" rel="noopener">/north-star</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-north-star.md" data-goatcounter-click="click:measure:/north-star" target="_blank" rel="noopener">/north-star</a>
           <span class="desc">Define or refine your North Star metric and OKR cascade</span>
         </div>
         <div class="row">
           <span class="kind">Reviewer</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/data-analyst.md" target="_blank" rel="noopener">data-analyst</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/data-analyst.md" data-goatcounter-click="click:measure:data-analyst" target="_blank" rel="noopener">data-analyst</a>
           <span class="desc">Metric validity and measurement rigor</span>
         </div>
         <div class="row">
           <span class="kind">Watcher</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/metrics-tracker.md" target="_blank" rel="noopener">metrics-tracker</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/metrics-tracker.md" data-goatcounter-click="click:measure:metrics-tracker" target="_blank" rel="noopener">metrics-tracker</a>
           <span class="desc">Flags anomalies, suggests what to investigate</span>
         </div>
         <div class="row">
           <span class="kind">Routine</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/weekly-metrics-digest.md" target="_blank" rel="noopener">weekly-metrics-digest</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/weekly-metrics-digest.md" data-goatcounter-click="click:measure:weekly-metrics-digest" target="_blank" rel="noopener">weekly-metrics-digest</a>
           <span class="desc">Monday 8am — exec-ready metrics summary</span>
         </div>
       </div>
@@ -804,72 +837,72 @@
       <div class="board">
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-stakeholder-communication.md" target="_blank" rel="noopener">/retro</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-stakeholder-communication.md" data-goatcounter-click="click:iterate:/retro" target="_blank" rel="noopener">/retro</a>
           <span class="desc">Sprint or project retrospective</span>
         </div>
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-plg-strategy.md" target="_blank" rel="noopener">/growth-experiment</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-plg-strategy.md" data-goatcounter-click="click:iterate:/growth-experiment" target="_blank" rel="noopener">/growth-experiment</a>
           <span class="desc">Experiment design and analysis framework</span>
         </div>
         <div class="row">
           <span class="kind">Skill</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/research/SKILL-competitive-research.md" target="_blank" rel="noopener">/competitive</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/research/SKILL-competitive-research.md" data-goatcounter-click="click:iterate:/competitive" target="_blank" rel="noopener">/competitive</a>
           <span class="desc">Deep competitive research plus battlecard</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/experiment-template.md" target="_blank" rel="noopener">experiment-template.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/experiment-template.md" data-goatcounter-click="click:iterate:experiment-template.md" target="_blank" rel="noopener">experiment-template.md</a>
           <span class="desc">A/B tests and growth experiments</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/ab-test-analysis.md" target="_blank" rel="noopener">ab-test-analysis.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/ab-test-analysis.md" data-goatcounter-click="click:iterate:ab-test-analysis.md" target="_blank" rel="noopener">ab-test-analysis.md</a>
           <span class="desc">Ship / kill decision from experiment results</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/survey-design.md" target="_blank" rel="noopener">survey-design.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/survey-design.md" data-goatcounter-click="click:iterate:survey-design.md" target="_blank" rel="noopener">survey-design.md</a>
           <span class="desc">PMF and feature-feedback survey design</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/survey-analysis.md" target="_blank" rel="noopener">survey-analysis.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/survey-analysis.md" data-goatcounter-click="click:iterate:survey-analysis.md" target="_blank" rel="noopener">survey-analysis.md</a>
           <span class="desc">Thematic coding of open-ended responses</span>
         </div>
         <div class="row">
           <span class="kind">Template</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/weekly-planning-w-method.md" target="_blank" rel="noopener">weekly-planning-w-method.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/weekly-planning-w-method.md" data-goatcounter-click="click:iterate:weekly-planning-w-method.md" target="_blank" rel="noopener">weekly-planning-w-method.md</a>
           <span class="desc">Three priorities, and what you're saying no to</span>
         </div>
         <div class="row">
           <span class="kind">Reviewer</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/competitor-watcher.md" target="_blank" rel="noopener">competitor-watcher</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/competitor-watcher.md" data-goatcounter-click="click:iterate:competitor-watcher" target="_blank" rel="noopener">competitor-watcher</a>
           <span class="desc">Competitive gaps, differentiation, market timing</span>
         </div>
         <div class="row">
           <span class="kind">Watcher</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/decision-logger.md" target="_blank" rel="noopener">decision-logger</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/decision-logger.md" data-goatcounter-click="click:iterate:decision-logger" target="_blank" rel="noopener">decision-logger</a>
           <span class="desc">Captures decisions with rationale as they happen</span>
         </div>
         <div class="row">
           <span class="kind">Routine</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/competitive-pulse.md" target="_blank" rel="noopener">competitive-pulse</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/competitive-pulse.md" data-goatcounter-click="click:iterate:competitive-pulse" target="_blank" rel="noopener">competitive-pulse</a>
           <span class="desc">Monday 9am — competitive signals brief</span>
         </div>
         <div class="row">
           <span class="kind">Routine</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/sprint-retro-prep.md" target="_blank" rel="noopener">sprint-retro-prep</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/sprint-retro-prep.md" data-goatcounter-click="click:iterate:sprint-retro-prep" target="_blank" rel="noopener">sprint-retro-prep</a>
           <span class="desc">Bi-weekly — data-backed retro document</span>
         </div>
         <div class="row">
           <span class="kind">Routine</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/backlog-grooming.md" target="_blank" rel="noopener">backlog-grooming</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/backlog-grooming.md" data-goatcounter-click="click:iterate:backlog-grooming" target="_blank" rel="noopener">backlog-grooming</a>
           <span class="desc">Weeknights 10pm — triaged issue queue</span>
         </div>
         <div class="row">
           <span class="kind">Routine</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/stakeholder-update-draft.md" target="_blank" rel="noopener">stakeholder-update-draft</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/stakeholder-update-draft.md" data-goatcounter-click="click:iterate:stakeholder-update-draft" target="_blank" rel="noopener">stakeholder-update-draft</a>
           <span class="desc">Friday 3pm — draft exec update</span>
         </div>
       </div>
@@ -885,32 +918,32 @@
       <div class="board">
         <div class="row">
           <span class="kind">Brain</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/CLAUDE.md" data-goatcounter-click="click:system:CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>
           <span class="desc">Hub file — routes triggers to skills, agents, and templates</span>
         </div>
         <div class="row">
           <span class="kind">Judgment</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/SOUL.md" target="_blank" rel="noopener">SOUL.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/SOUL.md" data-goatcounter-click="click:system:SOUL.md" target="_blank" rel="noopener">SOUL.md</a>
           <span class="desc">The PM judgment framework everything else is graded against</span>
         </div>
         <div class="row">
           <span class="kind">Rules</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/rules/operating-principles.md" target="_blank" rel="noopener">operating-principles.md</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/rules/operating-principles.md" data-goatcounter-click="click:system:operating-principles.md" target="_blank" rel="noopener">operating-principles.md</a>
           <span class="desc">Context over commands, artifacts over chat</span>
         </div>
         <div class="row">
           <span class="kind">Watcher</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/context-updater.md" target="_blank" rel="noopener">context-updater</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/context-updater.md" data-goatcounter-click="click:system:context-updater" target="_blank" rel="noopener">context-updater</a>
           <span class="desc">Flags stale context-library entries</span>
         </div>
         <div class="row">
           <span class="kind">Hook</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/context-freshness-check.md" target="_blank" rel="noopener">context-freshness-check</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/context-freshness-check.md" data-goatcounter-click="click:system:context-freshness-check" target="_blank" rel="noopener">context-freshness-check</a>
           <span class="desc">Session-start check that context hasn't gone stale</span>
         </div>
         <div class="row">
           <span class="kind">Context</span>
-          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/tree/main/context-library" target="_blank" rel="noopener">context-library/</a>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/tree/main/context-library" data-goatcounter-click="click:system:context-library/" target="_blank" rel="noopener">context-library/</a>
           <span class="desc">Company, product, users, competitors, team, metrics</span>
         </div>
       </div>
@@ -921,12 +954,12 @@
   <footer>
     <p>
       Built by Akash Mohan.
-      <a href="https://github.com/am-explore/pm-os-am-explore" target="_blank" rel="noopener">pm-os-am-explore</a> is a
-      customization of <a href="https://github.com/agentmart/pm-os" target="_blank" rel="noopener">agentmart/pm-os</a>
-      (MIT). <a href="https://github.com/am-explore/agent-production-readiness-framework" target="_blank" rel="noopener">agent-production-readiness-framework</a>
+      <a href="https://github.com/am-explore/pm-os-am-explore" data-goatcounter-click="click:footer:pm-os-am-explore" target="_blank" rel="noopener">pm-os-am-explore</a> is a
+      customization of <a href="https://github.com/agentmart/pm-os" data-goatcounter-click="click:footer:agentmart-pm-os" target="_blank" rel="noopener">agentmart/pm-os</a>
+      (MIT). <a href="https://github.com/am-explore/agent-production-readiness-framework" data-goatcounter-click="click:footer:agent-production-readiness-framework" target="_blank" rel="noopener">agent-production-readiness-framework</a>
       is Apache 2.0.
     </p>
-    <p>Read the write-up: <a href="https://amexplore.substack.com/p/beyond-the-prototype-the-enterprise" target="_blank" rel="noopener">Beyond the Prototype (Substack)</a></p>
+    <p>Read the write-up: <a href="https://amexplore.substack.com/p/beyond-the-prototype-the-enterprise" data-goatcounter-click="click:footer:substack" target="_blank" rel="noopener">Beyond the Prototype (Substack)</a></p>
   </footer>
 
 </div>
