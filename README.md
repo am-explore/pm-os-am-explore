@@ -3,6 +3,8 @@
 
 > **Note:** This is Akash Mohan's personal customization of [agentmart/pm-os](https://github.com/agentmart/pm-os) (MIT licensed), published as a public example. Context-library files here are placeholders only — real product context lives in a private companion repo.
 
+🚏 **[Browse the field map →](https://am-explore.github.io/pm-os-am-explore/)** — every phase of the product lifecycle, mapped to the skill, agent, or template that lives there (plus where it interchanges with the [Agent Production Readiness Framework](https://github.com/am-explore/agent-production-readiness-framework)).
+
 ---
 
 ## What This Is

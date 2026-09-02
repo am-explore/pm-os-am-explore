@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Product Line — am-explore</title>
+<meta name="description" content="A route map through the product development lifecycle, linking every phase to the skills, agents, and templates in the PM OS and Agent Production Readiness repos.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F2F4F7;
+    --paper-raised: #FFFFFF;
+    --ink: #172230;
+    --ink-soft: #4B5A6B;
+    --ink-faint: #7C8A9A;
+    --hairline: #C9D2DB;
+    --line-pmos: #21735C;
+    --line-aprf: #34519E;
+    --pin: #E85C41;
+    --pin-ink: #FFFFFF;
+    --focus: #34519E;
+
+    --font-display: 'Overpass', 'Arial Narrow', Arial, sans-serif;
+    --font-body: 'IBM Plex Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0F151E;
+      --paper-raised: #182130;
+      --ink: #E7ECF2;
+      --ink-soft: #9AACC0;
+      --ink-faint: #66768A;
+      --hairline: #2A3648;
+      --line-pmos: #4FB894;
+      --line-aprf: #7C99E8;
+      --pin: #FF7E5F;
+      --pin-ink: #17202B;
+      --focus: #7C99E8;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #0F151E;
+    --paper-raised: #182130;
+    --ink: #E7ECF2;
+    --ink-soft: #9AACC0;
+    --ink-faint: #66768A;
+    --hairline: #2A3648;
+    --line-pmos: #4FB894;
+    --line-aprf: #7C99E8;
+    --pin: #FF7E5F;
+    --pin-ink: #17202B;
+    --focus: #7C99E8;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, summary:focus-visible, details:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+
+  .page {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ---------- Masthead ---------- */
+
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 2.5rem;
+  }
+
+  .masthead .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .masthead h1 {
+    font-size: clamp(2.1rem, 5vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+
+  .masthead .standfirst {
+    max-width: 42rem;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+
+  .repo-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+
+  .repo-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    background: var(--paper-raised);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .repo-pill .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .repo-pill.pmos .dot { background: var(--line-pmos); }
+  .repo-pill.aprf .dot { background: var(--line-aprf); }
+
+  /* ---------- Map figure ---------- */
+
+  .map-figure {
+    margin: 0 0 1.25rem;
+  }
+
+  .map-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    background: var(--paper-raised);
+    padding: 0.5rem 0 0;
+  }
+
+  .map-scroll svg {
+    display: block;
+    min-width: 860px;
+    width: 100%;
+    height: auto;
+  }
+
+  .map-svg text {
+    font-family: var(--font-display);
+    fill: var(--ink);
+  }
+
+  .map-svg text.desc {
+    font-family: var(--font-mono);
+    fill: var(--ink-faint);
+  }
+
+  .map-svg text.you-are-here {
+    font-family: var(--font-mono);
+    fill: var(--pin);
+    font-weight: 500;
+  }
+
+  figcaption {
+    font-size: 0.88rem;
+    color: var(--ink-faint);
+    margin-top: 0.6rem;
+    max-width: 46rem;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+    margin-top: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+
+  .legend .swatch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .legend .swatch .line {
+    width: 1.4rem;
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .legend .swatch.pmos .line { background: var(--line-pmos); }
+  .legend .swatch.aprf .line { background: var(--line-aprf); }
+
+  /* ---------- Station cards ---------- */
+
+  .stations {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-top: 3rem;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 0.9rem;
+  }
+
+  .station-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--hairline);
+    border-top: 4px solid var(--line-pmos);
+    border-radius: 6px;
+    padding: 1.35rem 1.5rem 1.1rem;
+    scroll-margin-top: 1.5rem;
+  }
+
+  .station-card.aprf { border-top-color: var(--line-aprf); }
+
+  .station-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+  }
+
+  .station-bullet {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: var(--line-pmos);
+    color: var(--paper-raised);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+  }
+
+  .aprf .station-bullet { background: var(--line-aprf); }
+
+  .station-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .station-tag {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .station-blurb {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    max-width: 52ch;
+    margin: 0.35rem 0 1rem;
+  }
+
+  .board {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--hairline);
+    flex-wrap: wrap;
+  }
+
+  .row:last-child { border-bottom: none; }
+
+  .row .kind {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    padding: 0.12rem 0.4rem;
+    flex: none;
+    width: 5.6rem;
+    text-align: center;
+  }
+
+  .row a.name {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line-pmos);
+    flex: none;
+  }
+
+  .aprf .row a.name { border-bottom-color: var(--line-aprf); }
+
+  .row a.name:hover { color: var(--line-pmos); }
+  .aprf .row a.name:hover { color: var(--line-aprf); }
+
+  .row .desc {
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    flex: 1 1 16rem;
+  }
+
+  .feeds {
+    margin-top: 0.9rem;
+    padding-top: 0.7rem;
+    border-top: 1px dashed var(--hairline);
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  .feeds a {
+    font-family: var(--font-mono);
+    border-bottom: 1px solid var(--hairline);
+    text-decoration: none;
+  }
+
+  .interchange-note {
+    margin-top: 0.9rem;
+    padding: 0.7rem 0.9rem;
+    background: var(--paper);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--line-aprf);
+  }
+
+  .interchange-note a {
+    color: var(--line-aprf);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  /* ---------- System-wide card ---------- */
+
+  .system-card {
+    margin-top: 1.6rem;
+    background: transparent;
+    border: 1px dashed var(--hairline);
+    border-radius: 6px;
+    padding: 1.35rem 1.5rem;
+  }
+
+  .system-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .system-card .station-blurb { margin-bottom: 0.9rem; }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    color: var(--ink-faint);
+    font-size: 0.88rem;
+  }
+
+  footer a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  footer a:hover { color: var(--ink); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .station-bullet { transition: transform 0.15s ease; }
+    .station-card:hover .station-bullet { transform: scale(1.08); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="kicker">am-explore field map</p>
+    <h1>The Product Line</h1>
+    <p class="standfirst">
+      A route map through the product development lifecycle — every phase, and the AI skills, reviewer agents, and
+      templates that live there. Two lines run through it: <strong>PM OS</strong>, the day-to-day product lifecycle,
+      and <strong>Agent Production Readiness</strong>, which interchanges where a team is shipping an AI agent
+      specifically.
+    </p>
+    <div class="repo-pills">
+      <a class="repo-pill pmos" href="https://github.com/am-explore/pm-os-am-explore" target="_blank" rel="noopener">
+        <span class="dot"></span> pm-os-am-explore
+      </a>
+      <a class="repo-pill aprf" href="https://github.com/am-explore/agent-production-readiness-framework" target="_blank" rel="noopener">
+        <span class="dot"></span> agent-production-readiness-framework
+      </a>
+    </div>
+  </header>
+
+  <figure class="map-figure">
+    <div class="map-scroll">
+      <svg class="map-svg" viewBox="0 0 900 400" role="img" aria-label="A line diagram of the product development lifecycle running Discover, Define and Strategize, Design, Build and Ship, Launch, Measure, then Iterate, looping back to Discover. A second line, Agent Production Readiness, interchanges with the main line at Build and Ship and continues through two stops, Gate Check and Drift Watch, before rejoining near Launch.">
+
+        <defs>
+          <marker id="arrow-pmos" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--line-pmos)"></path>
+          </marker>
+        </defs>
+
+        <!-- loop-back arc: Iterate -> Discover -->
+        <path d="M 832 240 C 832 340, 70 340, 70 240" fill="none" stroke="var(--line-pmos)" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round" marker-end="url(#arrow-pmos)"></path>
+        <text x="451" y="358" text-anchor="middle" class="desc" font-size="12">new signals loop back into discover</text>
+
+        <!-- main line -->
+        <line x1="70" y1="240" x2="832" y2="240" stroke="var(--line-pmos)" stroke-width="5" stroke-linecap="round"></line>
+
+        <!-- APRF line -->
+        <line x1="420" y1="110" x2="620" y2="110" stroke="var(--line-aprf)" stroke-width="5" stroke-linecap="round"></line>
+        <!-- interchange ties -->
+        <line x1="451" y1="118" x2="451" y2="232" stroke="var(--line-aprf)" stroke-width="2" stroke-dasharray="1 6"></line>
+        <line x1="578" y1="118" x2="578" y2="232" stroke="var(--line-aprf)" stroke-width="2" stroke-dasharray="1 6"></line>
+
+        <!-- APRF stations -->
+        <circle cx="451" cy="110" r="9" fill="var(--paper-raised)" stroke="var(--line-aprf)" stroke-width="4"></circle>
+        <text x="451" y="88" text-anchor="middle" font-size="14" font-weight="700">Gate Check</text>
+
+        <circle cx="578" cy="110" r="9" fill="var(--paper-raised)" stroke="var(--line-aprf)" stroke-width="4"></circle>
+        <text x="578" y="88" text-anchor="middle" font-size="14" font-weight="700">Drift Watch</text>
+
+        <!-- main stations: Discover 70, Define 197, Design 324, Build&Ship 451, Launch 578, Measure 705, Iterate 832 -->
+        <circle cx="70" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="70" y="215" text-anchor="middle" font-size="14" font-weight="700">Discover</text>
+
+        <circle cx="197" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="197" y="215" text-anchor="middle" font-size="14" font-weight="700">Define &amp;</text>
+        <text x="197" y="200" text-anchor="middle" font-size="14" font-weight="700">Strategize</text>
+
+        <circle cx="324" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="324" y="215" text-anchor="middle" font-size="14" font-weight="700">Design</text>
+
+        <!-- Build & Ship: interchange, drawn larger with both colors -->
+        <circle cx="451" cy="240" r="12" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <circle cx="451" cy="240" r="5" fill="var(--line-aprf)"></circle>
+        <text x="451" y="272" text-anchor="middle" font-size="14" font-weight="700">Build &amp; Ship</text>
+
+        <!-- Launch: interchange -->
+        <circle cx="578" cy="240" r="12" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <circle cx="578" cy="240" r="5" fill="var(--line-aprf)"></circle>
+        <text x="578" y="272" text-anchor="middle" font-size="14" font-weight="700">Launch</text>
+
+        <circle cx="705" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="705" y="215" text-anchor="middle" font-size="14" font-weight="700">Measure</text>
+
+        <circle cx="832" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="832" y="215" text-anchor="middle" font-size="14" font-weight="700">Iterate</text>
+
+        <!-- you-are-here style pin on Build & Ship, where most AI-agent work actually starts -->
+        <circle cx="451" cy="240" r="3" fill="var(--pin)"></circle>
+
+      </svg>
+    </div>
+    <figcaption>
+      The lifecycle runs Discover through Iterate and loops back — product work never really ends at Measure.
+      The Agent Production Readiness line interchanges at Build &amp; Ship, the point where a feature becomes an
+      autonomous agent instead of a static feature, then runs its own two stops before rejoining near Launch.
+    </figcaption>
+    <div class="legend">
+      <span class="swatch pmos"><span class="line"></span> PM OS — the product lifecycle</span>
+      <span class="swatch aprf"><span class="line"></span> Agent Production Readiness — shipping AI agents specifically</span>
+    </div>
+  </figure>
+
+  <nav class="stations" aria-label="Stations">
+
+    <p class="section-label">The PM OS line</p>
+
+    <section class="station-card" id="discover">
+      <div class="station-head">
+        <span class="station-bullet">1</span>
+        <h3>Discover</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">Before you scope anything: what's the problem, and whose problem is it.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/discovery/SKILL-opportunity-solution-tree.md" target="_blank" rel="noopener">/discover</a>
+          <span class="desc">Opportunity Solution Tree — research signal → validated opportunity</span>
+        </div>
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/discovery/SKILL-user-interview.md" target="_blank" rel="noopener">/interview-prep</a>
+          <span class="desc">User interview guide, built as a safari not a validation session</span>
+        </div>
+        <div class="row">
+          <span class="kind">Reviewer</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/user-researcher.md" target="_blank" rel="noopener">user-researcher</a>
+          <span class="desc">Critiques evidence quality and assumption risk</span>
+        </div>
+        <div class="row">
+          <span class="kind">Watcher</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/risk-monitor.md" target="_blank" rel="noopener">risk-monitor</a>
+          <span class="desc">Scans early for dependency risk and blockers</span>
+        </div>
+        <div class="row">
+          <span class="kind">Routine</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/user-feedback-synthesis.md" target="_blank" rel="noopener">user-feedback-synthesis</a>
+          <span class="desc">Wednesday 10am — aggregates incoming feedback into themes</span>
+        </div>
+      </div>
+      <p class="feeds">Feeds <a href="https://github.com/am-explore/pm-os-am-explore/blob/main/context-library/users.md" target="_blank" rel="noopener">context-library/users.md</a> — personas, JTBD, and research get written back here.</p>
+    </section>
+
+    <section class="station-card" id="define">
+      <div class="station-head">
+        <span class="station-bullet">2</span>
+        <h3>Define &amp; Strategize</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">The opportunity is real. Now: what are you building, and what are you choosing not to build.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/strategy/SKILL-product-strategy.md" target="_blank" rel="noopener">/strategy</a>
+          <span class="desc">Product strategy canvas — vision, moat, bets and anti-bets</span>
+        </div>
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-prd-writing.md" target="_blank" rel="noopener">/write-prd</a>
+          <span class="desc">Full PRD with multi-agent review built in</span>
+        </div>
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-roadmap.md" target="_blank" rel="noopener">/roadmap</a>
+          <span class="desc">Quarterly roadmap planning with explicit tradeoffs</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/PRD-template.md" target="_blank" rel="noopener">PRD-template.md</a>
+          <span class="desc">Full PRD, with ISC-style acceptance criteria</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/prd-lean-thesis.md" target="_blank" rel="noopener">prd-lean-thesis.md</a>
+          <span class="desc">1.5–2pg version, for when the full PRD is overkill</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/daci-decision-doc.md" target="_blank" rel="noopener">daci-decision-doc.md</a>
+          <span class="desc">Multi-stakeholder decision doc with clear roles</span>
+        </div>
+        <div class="row">
+          <span class="kind">Reviewer</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/exec-reviewer.md" target="_blank" rel="noopener">exec-reviewer</a>
+          <span class="desc">Strategic alignment and business impact</span>
+        </div>
+        <div class="row">
+          <span class="kind">Reviewer</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/legal-reviewer.md" target="_blank" rel="noopener">legal-reviewer</a>
+          <span class="desc">Compliance risk and data handling flags</span>
+        </div>
+        <div class="row">
+          <span class="kind">Debate</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/debate-facilitator.md" target="_blank" rel="noopener">/review-prd</a>
+          <span class="desc">All 7 reviewers critique, then debate-facilitator + synthesis-agent weigh in</span>
+        </div>
+        <div class="row">
+          <span class="kind">Hook</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/prd-quality-gate.md" target="_blank" rel="noopener">prd-quality-gate</a>
+          <span class="desc">Advisory check that fires after a PRD is drafted</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="station-card" id="design">
+      <div class="station-head">
+        <span class="station-bullet">3</span>
+        <h3>Design</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">Scoped and prioritized. Now make it real enough to react to.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/design/SKILL-product-design-review.md" target="_blank" rel="noopener">/design-review</a>
+          <span class="desc">Structured critique of a mockup, flow, or prototype</span>
+        </div>
+        <div class="row">
+          <span class="kind">Reviewer</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/designer-reviewer.md" target="_blank" rel="noopener">designer-reviewer</a>
+          <span class="desc">UX quality, design-system fit, flow gaps</span>
+        </div>
+        <div class="row">
+          <span class="kind">Watcher</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/assumption-validator.md" target="_blank" rel="noopener">assumption-validator</a>
+          <span class="desc">Names the assumption you're betting on before you build</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="station-card" id="build">
+      <div class="station-head">
+        <span class="station-bullet">4</span>
+        <h3>Build &amp; Ship</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">Design's validated. This is where execution discipline and decision hygiene matter most.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/automation/SKILL-routine-setup.md" target="_blank" rel="noopener">/setup-routine</a>
+          <span class="desc">Turn a recurring build-phase task into a scheduled routine</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/decision-template.md" target="_blank" rel="noopener">decision-template.md</a>
+          <span class="desc">Single-decision quick log</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/roi-impact-estimation.md" target="_blank" rel="noopener">roi-impact-estimation.md</a>
+          <span class="desc">Business case before committing engineering time</span>
+        </div>
+        <div class="row">
+          <span class="kind">Reviewer</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/engineer-reviewer.md" target="_blank" rel="noopener">engineer-reviewer</a>
+          <span class="desc">Feasibility, tech debt, implementation risk</span>
+        </div>
+        <div class="row">
+          <span class="kind">Log</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/decision-log/README.md" target="_blank" rel="noopener">decision-log/</a>
+          <span class="desc">Institutional memory — every decision, with rationale</span>
+        </div>
+      </div>
+      <div class="interchange-note">
+        ⇄ Interchange — if what you're building is an <strong>AI agent</strong> rather than a static feature, this
+        is where the <strong>Agent Production Readiness</strong> line takes over. Continue to
+        <a href="#gate-check">Gate Check</a>.
+      </div>
+    </section>
+
+    <p class="section-label" style="margin-top: 0.5rem;">The Agent Production Readiness line</p>
+
+    <section class="station-card aprf" id="gate-check">
+      <div class="station-head">
+        <span class="station-bullet">A</span>
+        <h3>Gate Check</h3>
+        <span class="station-tag">agent-production-readiness-framework</span>
+      </div>
+      <p class="station-blurb">Before an agent gets more autonomy than a static feature ever had, it has to earn it.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Checklist</span>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/checklists/PROMOTION_GATE_CHECKLIST.md" target="_blank" rel="noopener">PROMOTION_GATE_CHECKLIST.md</a>
+          <span class="desc">Sign-off record for all 4 promotion gates</span>
+        </div>
+        <div class="row">
+          <span class="kind">Doc</span>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/docs/promotion_gates.md" target="_blank" rel="noopener">promotion_gates.md</a>
+          <span class="desc">Golden evals → shadow traffic → canaried HITL → telemetry</span>
+        </div>
+        <div class="row">
+          <span class="kind">Schema</span>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/schemas/eval_benchmark_schema.json" target="_blank" rel="noopener">eval_benchmark_schema.json</a>
+          <span class="desc">Machine-readable format for golden eval benchmarks</span>
+        </div>
+        <div class="row">
+          <span class="kind">Example</span>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/examples/eval_benchmark_examples.json" target="_blank" rel="noopener">eval_benchmark_examples.json</a>
+          <span class="desc">Sample cases across reasoning, tool-calling, safety, boundary</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="station-card aprf" id="drift-watch">
+      <div class="station-head">
+        <span class="station-bullet">B</span>
+        <h3>Drift Watch</h3>
+        <span class="station-tag">agent-production-readiness-framework</span>
+      </div>
+      <p class="station-blurb">It's live. Now prove it's still behaving, every day, without a human reading every trace.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Script</span>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/scripts/drift_evaluator.py" target="_blank" rel="noopener">drift_evaluator.py</a>
+          <span class="desc">LLM-judge worker with a circuit breaker on pass-rate drift</span>
+        </div>
+        <div class="row">
+          <span class="kind">Example</span>
+          <a class="name" href="https://github.com/am-explore/agent-production-readiness-framework/blob/main/examples/sample_production_traces.jsonl" target="_blank" rel="noopener">sample_production_traces.jsonl</a>
+          <span class="desc">Sample trace file to run the evaluator against out of the box</span>
+        </div>
+      </div>
+      <div class="interchange-note">
+        ⇄ Rejoins the PM OS line near <a href="#launch">Launch</a> — a passing drift check is part of what
+        "launch readiness" means for an agent.
+      </div>
+    </section>
+
+    <p class="section-label" style="margin-top: 0.5rem;">Back on the PM OS line</p>
+
+    <section class="station-card" id="launch">
+      <div class="station-head">
+        <span class="station-bullet">5</span>
+        <h3>Launch</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">Built, reviewed, and — if it's an agent — gate-checked. Time to tell people.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-launch-plan.md" target="_blank" rel="noopener">/launch-plan</a>
+          <span class="desc">Full launch checklist and GTM plan</span>
+        </div>
+        <div class="row">
+          <span class="kind">Hook</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/launch-readiness.md" target="_blank" rel="noopener">launch-readiness</a>
+          <span class="desc">Pre-launch quality gate, advisory by default</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="station-card" id="measure">
+      <div class="station-head">
+        <span class="station-bullet">6</span>
+        <h3>Measure</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">Live isn't the finish line. Did it do what you said it would do.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-north-star.md" target="_blank" rel="noopener">/north-star</a>
+          <span class="desc">Define or refine your North Star metric and OKR cascade</span>
+        </div>
+        <div class="row">
+          <span class="kind">Reviewer</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/data-analyst.md" target="_blank" rel="noopener">data-analyst</a>
+          <span class="desc">Metric validity and measurement rigor</span>
+        </div>
+        <div class="row">
+          <span class="kind">Watcher</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/metrics-tracker.md" target="_blank" rel="noopener">metrics-tracker</a>
+          <span class="desc">Flags anomalies, suggests what to investigate</span>
+        </div>
+        <div class="row">
+          <span class="kind">Routine</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/weekly-metrics-digest.md" target="_blank" rel="noopener">weekly-metrics-digest</a>
+          <span class="desc">Monday 8am — exec-ready metrics summary</span>
+        </div>
+      </div>
+      <p class="feeds">Feeds <a href="https://github.com/am-explore/pm-os-am-explore/blob/main/context-library/metrics.md" target="_blank" rel="noopener">context-library/metrics.md</a> — North Star, funnel, and OKRs get written back here weekly.</p>
+    </section>
+
+    <section class="station-card" id="iterate">
+      <div class="station-head">
+        <span class="station-bullet">7</span>
+        <h3>Iterate</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">The numbers say something. Decide what changes, then feed it back to Discover.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/execution/SKILL-stakeholder-communication.md" target="_blank" rel="noopener">/retro</a>
+          <span class="desc">Sprint or project retrospective</span>
+        </div>
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/growth/SKILL-plg-strategy.md" target="_blank" rel="noopener">/growth-experiment</a>
+          <span class="desc">Experiment design and analysis framework</span>
+        </div>
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/research/SKILL-competitive-research.md" target="_blank" rel="noopener">/competitive</a>
+          <span class="desc">Deep competitive research plus battlecard</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/experiment-template.md" target="_blank" rel="noopener">experiment-template.md</a>
+          <span class="desc">A/B tests and growth experiments</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/ab-test-analysis.md" target="_blank" rel="noopener">ab-test-analysis.md</a>
+          <span class="desc">Ship / kill decision from experiment results</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/survey-design.md" target="_blank" rel="noopener">survey-design.md</a>
+          <span class="desc">PMF and feature-feedback survey design</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/survey-analysis.md" target="_blank" rel="noopener">survey-analysis.md</a>
+          <span class="desc">Thematic coding of open-ended responses</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/weekly-planning-w-method.md" target="_blank" rel="noopener">weekly-planning-w-method.md</a>
+          <span class="desc">Three priorities, and what you're saying no to</span>
+        </div>
+        <div class="row">
+          <span class="kind">Reviewer</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/competitor-watcher.md" target="_blank" rel="noopener">competitor-watcher</a>
+          <span class="desc">Competitive gaps, differentiation, market timing</span>
+        </div>
+        <div class="row">
+          <span class="kind">Watcher</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/decision-logger.md" target="_blank" rel="noopener">decision-logger</a>
+          <span class="desc">Captures decisions with rationale as they happen</span>
+        </div>
+        <div class="row">
+          <span class="kind">Routine</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/competitive-pulse.md" target="_blank" rel="noopener">competitive-pulse</a>
+          <span class="desc">Monday 9am — competitive signals brief</span>
+        </div>
+        <div class="row">
+          <span class="kind">Routine</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/sprint-retro-prep.md" target="_blank" rel="noopener">sprint-retro-prep</a>
+          <span class="desc">Bi-weekly — data-backed retro document</span>
+        </div>
+        <div class="row">
+          <span class="kind">Routine</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/backlog-grooming.md" target="_blank" rel="noopener">backlog-grooming</a>
+          <span class="desc">Weeknights 10pm — triaged issue queue</span>
+        </div>
+        <div class="row">
+          <span class="kind">Routine</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/routines/stakeholder-update-draft.md" target="_blank" rel="noopener">stakeholder-update-draft</a>
+          <span class="desc">Friday 3pm — draft exec update</span>
+        </div>
+      </div>
+      <p class="feeds">Loops back to <a href="#discover">Discover</a> — new signals from here start the cycle again.</p>
+    </section>
+
+    <div class="system-card">
+      <h3>Runs every session, not just one station</h3>
+      <p class="station-blurb">
+        These aren't phase-bound — they're read or checked at the start of every session, regardless of where you
+        are on the line.
+      </p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Brain</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/CLAUDE.md" target="_blank" rel="noopener">CLAUDE.md</a>
+          <span class="desc">Hub file — routes triggers to skills, agents, and templates</span>
+        </div>
+        <div class="row">
+          <span class="kind">Judgment</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/SOUL.md" target="_blank" rel="noopener">SOUL.md</a>
+          <span class="desc">The PM judgment framework everything else is graded against</span>
+        </div>
+        <div class="row">
+          <span class="kind">Rules</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/rules/operating-principles.md" target="_blank" rel="noopener">operating-principles.md</a>
+          <span class="desc">Context over commands, artifacts over chat</span>
+        </div>
+        <div class="row">
+          <span class="kind">Watcher</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/.claude/agents/context-updater.md" target="_blank" rel="noopener">context-updater</a>
+          <span class="desc">Flags stale context-library entries</span>
+        </div>
+        <div class="row">
+          <span class="kind">Hook</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/hooks/context-freshness-check.md" target="_blank" rel="noopener">context-freshness-check</a>
+          <span class="desc">Session-start check that context hasn't gone stale</span>
+        </div>
+        <div class="row">
+          <span class="kind">Context</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/tree/main/context-library" target="_blank" rel="noopener">context-library/</a>
+          <span class="desc">Company, product, users, competitors, team, metrics</span>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+
+  <footer>
+    <p>
+      Built by Akash Mohan.
+      <a href="https://github.com/am-explore/pm-os-am-explore" target="_blank" rel="noopener">pm-os-am-explore</a> is a
+      customization of <a href="https://github.com/agentmart/pm-os" target="_blank" rel="noopener">agentmart/pm-os</a>
+      (MIT). <a href="https://github.com/am-explore/agent-production-readiness-framework" target="_blank" rel="noopener">agent-production-readiness-framework</a>
+      is Apache 2.0.
+    </p>
+    <p>Read the write-up: <a href="https://amexplore.substack.com/p/beyond-the-prototype-the-enterprise" target="_blank" rel="noopener">Beyond the Prototype (Substack)</a></p>
+  </footer>
+
+</div>
+
+</body>
+</html>
