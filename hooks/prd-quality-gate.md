@@ -57,12 +57,20 @@ Or enforce in CI via a GitHub Actions workflow that runs a checker on PRD file c
 - [ ] **Open Questions** — At least one genuine open question with owner and due date
 - [ ] **Decision Log** — Section present for tracking decisions during development
 
+### Closed-World Constraint Check (entities must exist in context-library/)
+- [ ] Every customer tier or pricing plan named exists in `context-library/company.md`
+- [ ] Every persona named exists in `context-library/users.md` — not an invented segment
+- [ ] Every competitor named exists in `context-library/competitors.md`
+- [ ] Every API, integration, or technical capability claimed exists in `context-library/product.md`'s Technical Architecture section
+- [ ] Nothing reads as invented — if it isn't in `context-library/`, it's not established; tag it **[Assumption]** (see Epistemic Tagging in `templates/PRD-template.md`) instead of stating it as given
+
 ### Anti-Patterns (should NOT be present)
 - [ ] No vague success metrics ("improve engagement" without a number)
 - [ ] No undefined personas ("users" without specifying which segment)
 - [ ] No missing tradeoffs ("we'll do everything in Phase 1")
 - [ ] No phantom certainty (stating assumptions as facts)
 - [ ] No solution-first framing (jumping to features before establishing the problem)
+- [ ] No invented entities (customer tiers, personas, APIs, competitors) absent from `context-library/`
 
 ---
 
@@ -90,6 +98,14 @@ Or enforce in CI via a GitHub Actions workflow that runs a checker on PRD file c
 | Technical Considerations | ✅/⚠️ | |
 | Phasing | ✅/⚠️ | |
 | Open Questions | ✅/⚠️ | |
+
+### Closed-World Constraint Check
+| Entity Type | Status | Notes |
+|-------------|--------|-------|
+| Customer tiers / pricing | ✅/❌ | |
+| Personas | ✅/❌ | |
+| Competitors | ✅/❌ | |
+| APIs / technical capabilities | ✅/❌ | |
 
 ### Anti-Patterns Detected
 [List any anti-patterns found with specific examples from the PRD]

@@ -25,3 +25,7 @@ Always output usable artifacts:
 Every artifact you produce should reference and build on previous artifacts.
 PRD → references the OST → references the user research → references the strategy.
 The system should compound, not reset.
+
+## 6. Closed-World Grounding
+Every entity referenced in an output — a customer tier, a persona, a competitor, an API, a team capability — must trace back to something in `context-library/`. If it isn't there, it's not established: tag it **[Assumption]** (see Epistemic Tagging in `templates/PRD-template.md`) rather than stating it as given.
+This principle is what prevents the hallucination in the first place; `hooks/prd-quality-gate.md`'s Closed-World Constraint Check is what catches it if this principle gets skipped.

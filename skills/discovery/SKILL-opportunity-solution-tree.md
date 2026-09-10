@@ -58,6 +58,8 @@ Cluster findings into opportunity categories. An opportunity is:
 ❌ NOT a feature request
 ❌ NOT a solution hypothesis
 
+Tag each finding as **[Fact]** (something a user directly said or did), **[Inference]** (a pattern you're reading across multiple interviews, not stated by any one person), or **[Assumption]** (something you believe but haven't actually asked about yet). Same tags as `templates/PRD-template.md`'s Epistemic Tagging convention — an opportunity tree built entirely on [Assumption]s is a guess, not discovery.
+
 ### Step 3: Prioritize Opportunities
 Apply the Opportunity Score (Anthony Ulwick):
 - **Importance:** How important is solving this? (1-10)
@@ -90,7 +92,7 @@ Use the Assumption Risk Matrix:
 **Desired Outcome:** [METRIC GOAL]
 
 **Priority Opportunity:** [USER NEED IN USER LANGUAGE]
-- Evidence: [RESEARCH SUPPORTING THIS]
+- Evidence: [RESEARCH SUPPORTING THIS] — tag as [Fact] / [Inference] / [Assumption]
 - Importance score: [X/10]
 - Satisfaction score: [X/10]
 - Opportunity score: [CALCULATED]
@@ -110,4 +112,5 @@ Use the Assumption Risk Matrix:
 - ❌ Treating every customer feature request as an opportunity
 - ❌ Having so many branches the tree becomes unnavigable
 - ❌ Never updating the tree as you learn new things
+- ❌ Writing evidence without tagging whether it's [Fact], [Inference], or [Assumption]
 - ✅ Revisiting the tree every sprint to reflect new learning

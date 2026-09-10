@@ -154,6 +154,8 @@ Structured quality check **definitions** for PM artifacts — see `hooks/README.
 
 Enforcement is `advisory` by default (surfaces issues as suggestions). Change to `blocking` to require fixes before proceeding.
 
+`PRD Quality Gate` also runs a **Closed-World Constraint Check** — verifying every named entity (customer tier, persona, competitor, API) actually exists in `context-library/` before the PRD leaves draft. See `.claude/rules/operating-principles.md` #6 and the Epistemic Tagging convention in `templates/PRD-template.md` — the three work together: tag what's uncertain, ground what's stated as fact, gate what slips through.
+
 ## Tool Integrations
 
 For MCP server setup (Jira, Figma, analytics, etc.), see `tools/README.md`.

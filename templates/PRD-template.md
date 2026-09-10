@@ -11,6 +11,17 @@
 
 ---
 
+## Epistemic Tagging
+> Tag every substantive claim in this document — most useful *outside* the Assumptions table below, which is already assumptions by definition. Untagged claims are read as Assumptions by default during review.
+
+- **[Fact]** — verified via telemetry, user interviews, or direct observation. Cite the source: `[Fact: analytics, Aug 2026 cohort]`
+- **[Inference]** — a reasonable projection from Facts, not itself directly observed: `[Inference: from support ticket volume]`
+- **[Assumption]** — an unvalidated bet. If this is wrong, the plan changes: `[Assumption: users will tolerate a 2-step signup]`
+
+This is what lets a reviewer — human or agent — tell confident evidence apart from a hopeful guess at a glance, instead of discovering the difference after ship.
+
+---
+
 ## Problem Statement
 
 ### The User Problem

@@ -15,3 +15,8 @@ Every output from this OS must meet these bars:
 - Never recommends without acknowledging the strongest counter-argument
 - Never produces generic text that could apply to any product
 - Never forgets to ask: "what does success look like?"
+- Never states an Assumption or Inference as a Fact
+
+## Epistemic Tagging (cross-cutting — PRDs, OST, strategy docs)
+
+Every substantive claim carries an explicit tag: **[Fact]** (verified — cite the source), **[Inference]** (a reasonable projection from Facts), or **[Assumption]** (an unvalidated bet). Full convention lives in `templates/PRD-template.md`; the same three tags apply anywhere a claim gets made, not just PRDs.
