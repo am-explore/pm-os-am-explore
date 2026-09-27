@@ -57,6 +57,11 @@ Or enforce in CI via a GitHub Actions workflow that runs a checker on PRD file c
 - [ ] **Open Questions** — At least one genuine open question with owner and due date
 - [ ] **Decision Log** — Section present for tracking decisions during development
 
+### Traceability (should be present)
+- [ ] **Origin** — PRD links to an `intake/` record or states where the request came from
+- [ ] **Trade-off recorded** — PRD links to a `templates/tradeoff-evaluation.md` (or `decision-log/` entry) showing what was chosen over what, or states why none was needed (Fast-track)
+- [ ] **Kill / revisit criterion** — the bet has a stated condition for stopping or changing course
+
 ### Closed-World Constraint Check (entities must exist in context-library/)
 - [ ] Every customer tier or pricing plan named exists in `context-library/company.md`
 - [ ] Every persona named exists in `context-library/users.md` — not an invented segment
@@ -98,6 +103,13 @@ Or enforce in CI via a GitHub Actions workflow that runs a checker on PRD file c
 | Technical Considerations | ✅/⚠️ | |
 | Phasing | ✅/⚠️ | |
 | Open Questions | ✅/⚠️ | |
+
+### Traceability
+| Item | Status | Notes |
+|------|--------|-------|
+| Origin (intake record) | ✅/⚠️ | |
+| Trade-off recorded | ✅/⚠️ | |
+| Kill / revisit criterion | ✅/⚠️ | |
 
 ### Closed-World Constraint Check
 | Entity Type | Status | Notes |

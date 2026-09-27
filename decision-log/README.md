@@ -79,6 +79,8 @@ Example: `2026-04-18-delay-notifications-to-q4.md`
 
 ## Integration with Other Systems
 
+- **Trade-off evaluations** (`templates/tradeoff-evaluation.md`) are the reasoning behind significant decisions — link the evaluation from the decision file
+- **Intake** (`intake/`) records link forward to the decision that resolved them
 - **PRDs** reference decisions in their Decision Log section
 - **Stakeholder updates** surface recent decisions via the `stakeholder-update-draft` routine
 - **Strategy reviews** use decision patterns to identify team tendencies

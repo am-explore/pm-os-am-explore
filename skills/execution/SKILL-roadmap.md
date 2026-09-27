@@ -79,6 +79,8 @@ Simple 3-horizon format that communicates direction without false precision:
 
 ## The Prioritization Decision Process
 
+> For a single hard call between competing options (rather than sequencing a whole roadmap), use `/evaluate` — `skills/strategy/SKILL-tradeoff-evaluation.md`. New requests should arrive here already routed by `/intake`.
+
 ### Step 1: Filter by Strategy
 Before scoring anything, filter the backlog:
 - Does this item connect to an OKR or strategic bet?

@@ -41,6 +41,8 @@ You are running the Backlog Grooming routine for PM OS.
 
 **Your task:** Triage all new/ungroomed issues since the last run.
 
+> Scope note: this routine triages **existing issues**. New requests, ideas, and feedback enter through `/intake` (`skills/discovery/SKILL-intake-triage.md`, logged in `intake/register.md`). If a groomed issue is really an unrouted request, route it through intake instead of just labeling it. Also review `intake/register.md` for Parked items whose revisit trigger has fired.
+
 ### Steps:
 1. Read `context-library/product.md` for current product priorities and roadmap themes
 2. Read `context-library/team.md` for team structure and ownership areas

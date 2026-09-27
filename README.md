@@ -46,7 +46,7 @@ claude
 - `CLAUDE.md` is auto-loaded every session with `@` imports that pull in `SOUL.md` and all `context-library/` files
 - `.claude/rules/` contains operating principles and output standards (auto-loaded)
 - `.claude/agents/` contains 7 specialist reviewer subagents (available via `/agents`)
-- `.claude/skills/` contains 15 skill router files — invoke via `/write-prd`, `/discover`, `/strategy`, etc.
+- `.claude/skills/` contains 18 skill router files — invoke via `/intake`, `/evaluate`, `/write-prd`, `/discover`, `/strategy`, etc.
 - Full skill frameworks live in `skills/` — the router files point Claude to them
 
 </details>
@@ -153,6 +153,8 @@ These are persona/prompt definitions, not always-on background agents. Invoke th
 
 | Template | Use for |
 |----------|---------|
+| `templates/intake-request.md` | Triage record for an incoming request — problem, evidence, route |
+| `templates/tradeoff-evaluation.md` | Options, weighted criteria, what is given up, the bet |
 | `templates/PRD-template.md` | New feature or initiative briefs |
 | `templates/experiment-template.md` | A/B tests and growth experiments |
 | `templates/decision-template.md` | Product decision records |
@@ -275,10 +277,16 @@ pm-os/
 │   ├── debate-facilitator.md   ← Orchestrates multi-agent review debates
 │   └── synthesis-agent.md      ← Produces weighted recommendations
 ├── templates/              ← Document templates
+│   ├── intake-request.md       ← Front-door triage record
+│   ├── tradeoff-evaluation.md  ← Options, criteria, trade-offs, the bet
 │   ├── PRD-template.md
 │   ├── experiment-template.md
 │   ├── decision-template.md    ← Product decision records
 │   └── routine-template.md     ← Custom routine configuration
+├── intake/                 ← Front door: register of incoming requests and how each was routed
+│   ├── README.md
+│   ├── register.md
+│   └── requests/
 ├── decision-log/           ← Institutional memory of product decisions
 │   ├── README.md
 │   └── decisions/
@@ -309,6 +317,8 @@ These map trigger words to skill files. **In Claude Code** they are native slash
 
 | Command | What happens |
 |---------|-------------|
+| `/intake [request]` | Triage a new request → Fast-track / Discover / Evaluate / Park / Decline |
+| `/evaluate [decision]` | Weigh options and trade-offs; state what is given up and the bet |
 | `/discover` | Full discovery cycle: OST → assumptions → experiments |
 | `/strategy` | Product strategy canvas |
 | `/write-prd [topic]` | Full PRD with sub-agent review |

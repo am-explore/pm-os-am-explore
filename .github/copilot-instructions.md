@@ -33,6 +33,8 @@ When conversation matches these triggers, read the corresponding skill file and 
 
 | Trigger | Skill file |
 |---------|-----------|
+| intake, new request, feature request, triage | `skills/discovery/SKILL-intake-triage.md` |
+| evaluate, trade-off, compare options, go / no-go | `skills/strategy/SKILL-tradeoff-evaluation.md` |
 | discovery, research, opportunity | `skills/discovery/SKILL-opportunity-solution-tree.md`, `skills/discovery/SKILL-user-interview.md` |
 | PRD, spec, requirements | `skills/execution/SKILL-prd-writing.md` |
 | competitor, market, battlecard | `skills/research/SKILL-competitive-research.md` |

@@ -195,7 +195,7 @@
 
   .map-scroll svg {
     display: block;
-    min-width: 860px;
+    min-width: 940px;
     width: 100%;
     height: auto;
   }
@@ -474,7 +474,7 @@
 
   <figure class="map-figure">
     <div class="map-scroll">
-      <svg class="map-svg" viewBox="0 0 900 400" role="img" aria-label="A line diagram of the product development lifecycle running Discover, Define and Strategize, Design, Build and Ship, Launch, Measure, then Iterate, looping back to Discover. A second line, Agent Production Readiness, interchanges with the main line at Build and Ship and continues through two stops, Gate Check and Drift Watch, before rejoining near Launch.">
+      <svg class="map-svg" viewBox="0 0 1000 400" role="img" aria-label="A line diagram of the product development lifecycle running Intake, Discover, Trade-off and Evaluate, Define and Strategize, Design, Build and Ship, Launch, Measure, then Iterate, looping back to Intake. A second line, Agent Production Readiness, interchanges with the main line at Build and Ship and continues through two stops, Gate Check and Drift Watch, before rejoining near Launch.">
 
         <defs>
           <marker id="arrow-pmos" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -482,60 +482,67 @@
           </marker>
         </defs>
 
-        <!-- loop-back arc: Iterate -> Discover -->
-        <path d="M 832 240 C 832 340, 70 340, 70 240" fill="none" stroke="var(--line-pmos)" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round" marker-end="url(#arrow-pmos)"></path>
-        <text x="451" y="358" text-anchor="middle" class="desc" font-size="12">new signals loop back into discover</text>
+        <!-- loop-back arc: Iterate -> Intake -->
+        <path d="M 932 240 C 932 340, 70 340, 70 240" fill="none" stroke="var(--line-pmos)" stroke-width="4" stroke-dasharray="1 10" stroke-linecap="round" marker-end="url(#arrow-pmos)"></path>
+        <text x="501" y="358" text-anchor="middle" class="desc" font-size="12">new signals loop back into intake</text>
 
         <!-- main line -->
-        <line x1="70" y1="240" x2="832" y2="240" stroke="var(--line-pmos)" stroke-width="5" stroke-linecap="round"></line>
+        <line x1="70" y1="240" x2="932" y2="240" stroke="var(--line-pmos)" stroke-width="5" stroke-linecap="round"></line>
 
         <!-- APRF line -->
-        <line x1="420" y1="110" x2="620" y2="110" stroke="var(--line-aprf)" stroke-width="5" stroke-linecap="round"></line>
+        <line x1="578" y1="110" x2="748" y2="110" stroke="var(--line-aprf)" stroke-width="5" stroke-linecap="round"></line>
         <!-- interchange ties -->
-        <line x1="451" y1="118" x2="451" y2="232" stroke="var(--line-aprf)" stroke-width="2" stroke-dasharray="1 6"></line>
-        <line x1="578" y1="118" x2="578" y2="232" stroke="var(--line-aprf)" stroke-width="2" stroke-dasharray="1 6"></line>
+        <line x1="609" y1="118" x2="609" y2="232" stroke="var(--line-aprf)" stroke-width="2" stroke-dasharray="1 6"></line>
+        <line x1="717" y1="118" x2="717" y2="232" stroke="var(--line-aprf)" stroke-width="2" stroke-dasharray="1 6"></line>
 
         <!-- APRF stations -->
-        <circle cx="451" cy="110" r="9" fill="var(--paper-raised)" stroke="var(--line-aprf)" stroke-width="4"></circle>
-        <text x="451" y="88" text-anchor="middle" font-size="14" font-weight="700">Gate Check</text>
+        <circle cx="609" cy="110" r="9" fill="var(--paper-raised)" stroke="var(--line-aprf)" stroke-width="4"></circle>
+        <text x="609" y="88" text-anchor="middle" font-size="14" font-weight="700">Gate Check</text>
 
-        <circle cx="578" cy="110" r="9" fill="var(--paper-raised)" stroke="var(--line-aprf)" stroke-width="4"></circle>
-        <text x="578" y="88" text-anchor="middle" font-size="14" font-weight="700">Drift Watch</text>
+        <circle cx="717" cy="110" r="9" fill="var(--paper-raised)" stroke="var(--line-aprf)" stroke-width="4"></circle>
+        <text x="717" y="88" text-anchor="middle" font-size="14" font-weight="700">Drift Watch</text>
 
-        <!-- main stations: Discover 70, Define 197, Design 324, Build&Ship 451, Launch 578, Measure 705, Iterate 832 -->
+        <!-- main stations: Intake 70, Discover 178, Evaluate 286, Define 393, Design 501, Build&Ship 609, Launch 717, Measure 824, Iterate 932 -->
         <circle cx="70" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
-        <text x="70" y="215" text-anchor="middle" font-size="14" font-weight="700">Discover</text>
+        <text x="70" y="215" text-anchor="middle" font-size="14" font-weight="700">Intake</text>
 
-        <circle cx="197" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
-        <text x="197" y="215" text-anchor="middle" font-size="14" font-weight="700">Define &amp;</text>
-        <text x="197" y="200" text-anchor="middle" font-size="14" font-weight="700">Strategize</text>
+        <circle cx="178" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="178" y="215" text-anchor="middle" font-size="14" font-weight="700">Discover</text>
 
-        <circle cx="324" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
-        <text x="324" y="215" text-anchor="middle" font-size="14" font-weight="700">Design</text>
+        <circle cx="286" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="286" y="215" text-anchor="middle" font-size="14" font-weight="700">Evaluate</text>
+        <text x="286" y="200" text-anchor="middle" font-size="14" font-weight="700">Trade-off &amp;</text>
+
+        <circle cx="393" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="393" y="215" text-anchor="middle" font-size="14" font-weight="700">Strategize</text>
+        <text x="393" y="200" text-anchor="middle" font-size="14" font-weight="700">Define &amp;</text>
+
+        <circle cx="501" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="501" y="215" text-anchor="middle" font-size="14" font-weight="700">Design</text>
 
         <!-- Build & Ship: interchange, drawn larger with both colors -->
-        <circle cx="451" cy="240" r="12" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
-        <circle cx="451" cy="240" r="5" fill="var(--line-aprf)"></circle>
-        <text x="451" y="272" text-anchor="middle" font-size="14" font-weight="700">Build &amp; Ship</text>
+        <circle cx="609" cy="240" r="12" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <circle cx="609" cy="240" r="5" fill="var(--line-aprf)"></circle>
+        <text x="609" y="272" text-anchor="middle" font-size="14" font-weight="700">Build &amp; Ship</text>
 
         <!-- Launch: interchange -->
-        <circle cx="578" cy="240" r="12" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
-        <circle cx="578" cy="240" r="5" fill="var(--line-aprf)"></circle>
-        <text x="578" y="272" text-anchor="middle" font-size="14" font-weight="700">Launch</text>
+        <circle cx="717" cy="240" r="12" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <circle cx="717" cy="240" r="5" fill="var(--line-aprf)"></circle>
+        <text x="717" y="272" text-anchor="middle" font-size="14" font-weight="700">Launch</text>
 
-        <circle cx="705" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
-        <text x="705" y="215" text-anchor="middle" font-size="14" font-weight="700">Measure</text>
+        <circle cx="824" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="824" y="215" text-anchor="middle" font-size="14" font-weight="700">Measure</text>
 
-        <circle cx="832" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
-        <text x="832" y="215" text-anchor="middle" font-size="14" font-weight="700">Iterate</text>
+        <circle cx="932" cy="240" r="10" fill="var(--paper-raised)" stroke="var(--line-pmos)" stroke-width="5"></circle>
+        <text x="932" y="215" text-anchor="middle" font-size="14" font-weight="700">Iterate</text>
 
         <!-- you-are-here style pin on Build & Ship, where most AI-agent work actually starts -->
-        <circle cx="451" cy="240" r="3" fill="var(--pin)"></circle>
+        <circle cx="609" cy="240" r="3" fill="var(--pin)"></circle>
 
       </svg>
     </div>
     <figcaption>
-      The lifecycle runs Discover through Iterate and loops back — product work never really ends at Measure.
+      The lifecycle runs Intake through Iterate and loops back — product work never really ends at Measure, and new signals re-enter through the front door.
       The Agent Production Readiness line interchanges at Build &amp; Ship, the point where a feature becomes an
       autonomous agent instead of a static feature, then runs its own two stops before rejoining near Launch.
     </figcaption>
@@ -549,9 +556,36 @@
 
     <p class="section-label">The PM OS line</p>
 
-    <section class="station-card" id="discover">
+    <section class="station-card" id="intake">
       <div class="station-head">
         <span class="station-bullet">1</span>
+        <h3>Intake</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">Every request gets one front door and one answer — even if the answer is "not now" or "no."</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/discovery/SKILL-intake-triage.md" data-goatcounter-click="click:intake:/intake" target="_blank" rel="noopener">/intake</a>
+          <span class="desc">Separates the problem from the proposed solution, then routes: fast-track, discover, evaluate, park, decline</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/intake-request.md" data-goatcounter-click="click:intake:intake-request.md" target="_blank" rel="noopener">intake-request.md</a>
+          <span class="desc">Verbatim ask, four-slot problem statement, tagged evidence, routing decision, reply to requester</span>
+        </div>
+        <div class="row">
+          <span class="kind">Log</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/intake/README.md" data-goatcounter-click="click:intake:intake/" target="_blank" rel="noopener">intake/</a>
+          <span class="desc">Register of every request and where it went — parked items carry a revisit trigger</span>
+        </div>
+      </div>
+      <p class="feeds">Routes to <a href="#discover">Discover</a> when the problem isn't understood yet, or to <a href="#evaluate">Trade-off &amp; Evaluate</a> when it competes for capacity. Repeated declines become anti-bets in <a href="#define">Define</a>.</p>
+    </section>
+
+    <section class="station-card" id="discover">
+      <div class="station-head">
+        <span class="station-bullet">2</span>
         <h3>Discover</h3>
         <span class="station-tag">pm-os-am-explore</span>
       </div>
@@ -586,9 +620,46 @@
       <p class="feeds">Feeds <a href="https://github.com/am-explore/pm-os-am-explore/blob/main/context-library/users.md" target="_blank" rel="noopener">context-library/users.md</a> — personas, JTBD, and research get written back here.</p>
     </section>
 
+    <section class="station-card" id="evaluate">
+      <div class="station-head">
+        <span class="station-bullet">3</span>
+        <h3>Trade-off &amp; Evaluate</h3>
+        <span class="station-tag">pm-os-am-explore</span>
+      </div>
+      <p class="station-blurb">The problem is understood and credible. Now: what does choosing it cost, and what are you betting on.</p>
+      <div class="board">
+        <div class="row">
+          <span class="kind">Skill</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/skills/strategy/SKILL-tradeoff-evaluation.md" data-goatcounter-click="click:evaluate:/evaluate" target="_blank" rel="noopener">/evaluate</a>
+          <span class="desc">Options, criteria weighted before scoring, and an explicit statement of what is given up</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/tradeoff-evaluation.md" data-goatcounter-click="click:evaluate:tradeoff-evaluation.md" target="_blank" rel="noopener">tradeoff-evaluation.md</a>
+          <span class="desc">Weighted scoring, sensitivity check on unvalidated inputs, the bet, the kill criterion</span>
+        </div>
+        <div class="row">
+          <span class="kind">Template</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/templates/roi-impact-estimation.md" data-goatcounter-click="click:evaluate:roi-impact-estimation.md" target="_blank" rel="noopener">roi-impact-estimation.md</a>
+          <span class="desc">Business case for the option you chose, before committing engineering time</span>
+        </div>
+        <div class="row">
+          <span class="kind">Debate</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/sub-agents/debate-facilitator.md" data-goatcounter-click="click:evaluate:/review-strategy" target="_blank" rel="noopener">/review-strategy</a>
+          <span class="desc">For one-way-door calls: reviewers critique, then the real trade-off is surfaced for you to decide</span>
+        </div>
+        <div class="row">
+          <span class="kind">Log</span>
+          <a class="name" href="https://github.com/am-explore/pm-os-am-explore/blob/main/decision-log/README.md" data-goatcounter-click="click:evaluate:decision-log/" target="_blank" rel="noopener">decision-log/</a>
+          <span class="desc">The decision and its reasoning, recorded with the strongest counter-argument</span>
+        </div>
+      </div>
+      <p class="feeds">Hands the chosen option to <a href="#define">Define &amp; Strategize</a>. Options that keep losing for the same reason are proposed there as anti-bets.</p>
+    </section>
+
     <section class="station-card" id="define">
       <div class="station-head">
-        <span class="station-bullet">2</span>
+        <span class="station-bullet">4</span>
         <h3>Define &amp; Strategize</h3>
         <span class="station-tag">pm-os-am-explore</span>
       </div>
@@ -649,11 +720,11 @@
 
     <section class="station-card" id="design">
       <div class="station-head">
-        <span class="station-bullet">3</span>
+        <span class="station-bullet">5</span>
         <h3>Design</h3>
         <span class="station-tag">pm-os-am-explore</span>
       </div>
-      <p class="station-blurb">Scoped and prioritized. Now make it real enough to react to.</p>
+      <p class="station-blurb">Chosen and scoped. Now make it real enough to react to.</p>
       <div class="board">
         <div class="row">
           <span class="kind">Skill</span>
@@ -675,7 +746,7 @@
 
     <section class="station-card" id="build">
       <div class="station-head">
-        <span class="station-bullet">4</span>
+        <span class="station-bullet">6</span>
         <h3>Build &amp; Ship</h3>
         <span class="station-tag">pm-os-am-explore</span>
       </div>
@@ -776,7 +847,7 @@
 
     <section class="station-card" id="launch">
       <div class="station-head">
-        <span class="station-bullet">5</span>
+        <span class="station-bullet">7</span>
         <h3>Launch</h3>
         <span class="station-tag">pm-os-am-explore</span>
       </div>
@@ -797,7 +868,7 @@
 
     <section class="station-card" id="measure">
       <div class="station-head">
-        <span class="station-bullet">6</span>
+        <span class="station-bullet">8</span>
         <h3>Measure</h3>
         <span class="station-tag">pm-os-am-explore</span>
       </div>
@@ -829,7 +900,7 @@
 
     <section class="station-card" id="iterate">
       <div class="station-head">
-        <span class="station-bullet">7</span>
+        <span class="station-bullet">9</span>
         <h3>Iterate</h3>
         <span class="station-tag">pm-os-am-explore</span>
       </div>
@@ -906,7 +977,7 @@
           <span class="desc">Friday 3pm — draft exec update</span>
         </div>
       </div>
-      <p class="feeds">Loops back to <a href="#discover">Discover</a> — new signals from here start the cycle again.</p>
+      <p class="feeds">Loops back to <a href="#intake">Intake</a> — new signals from here re-enter through the front door and get routed.</p>
     </section>
 
     <div class="system-card">

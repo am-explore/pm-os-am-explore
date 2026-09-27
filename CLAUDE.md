@@ -37,6 +37,8 @@ Skills in `skills/` activate based on conversation context. When a trigger match
 
 | Trigger keywords | Skill file to read |
 |-----------------|-------------------|
+| "intake", "new request", "someone asked for", "feature request", "triage this" | `skills/discovery/SKILL-intake-triage.md` |
+| "evaluate", "trade-off", "compare options", "go / no-go", "which should we do" | `skills/strategy/SKILL-tradeoff-evaluation.md` |
 | "discovery", "research", "opportunity" | `skills/discovery/SKILL-opportunity-solution-tree.md`, `skills/discovery/SKILL-user-interview.md` |
 | "PRD", "spec", "requirements" | `skills/execution/SKILL-prd-writing.md` |
 | "competitor", "market", "battlecard" | `skills/research/SKILL-competitive-research.md` |
@@ -56,6 +58,8 @@ These map triggers to skill files. In Claude Code they are available as native s
 
 | Command | What it does | Skill file(s) |
 |---------|-------------|---------------|
+| `/intake` | Triage a new request into a routing decision (front door) | `skills/discovery/SKILL-intake-triage.md`, `templates/intake-request.md` |
+| `/evaluate` | Weigh options and trade-offs; state what is given up | `skills/strategy/SKILL-tradeoff-evaluation.md`, `templates/tradeoff-evaluation.md` |
 | `/discover` | Full discovery cycle: OST → assumptions → experiments | `skills/discovery/SKILL-opportunity-solution-tree.md`, `skills/discovery/SKILL-user-interview.md` |
 | `/strategy` | Product strategy canvas | `skills/strategy/SKILL-product-strategy.md` |
 | `/write-prd` | Full PRD with multi-agent review | `skills/execution/SKILL-prd-writing.md`, `templates/PRD-template.md` |
@@ -111,6 +115,8 @@ These are reviewer/monitor **persona definitions** — invoke them when you need
 
 ## Templates
 
+- Intake request (front-door triage record — problem, evidence, route): `templates/intake-request.md`
+- Trade-off evaluation (options, weighted criteria, what is given up, the bet): `templates/tradeoff-evaluation.md`
 - PRD template (full, with ISC acceptance criteria + multi-agent review checklist): `templates/PRD-template.md`
 - PRD template (lean, 1.5-2pg scannable — use when the full PRD is overkill): `templates/prd-lean-thesis.md`
 - Experiment template: `templates/experiment-template.md`
@@ -123,9 +129,13 @@ These are reviewer/monitor **persona definitions** — invoke them when you need
 - Weekly planning ("W" method — 3 priorities, what you're saying no to): `templates/weekly-planning-w-method.md`
 - Routine template: `templates/routine-template.md`
 
+## Intake Register
+
+Incoming requests are logged in `intake/register.md` (full records in `intake/requests/`). Every request ends in an explicit route — Fast-track, Discover, Evaluate, Park (with a revisit trigger), Decline, or Duplicate — so nothing is lost and nothing is decided by volume of voice. Use `/intake` to triage. See `intake/README.md`. Repeated declines become anti-bets in `/strategy`.
+
 ## Decision Log
 
-Product decisions are captured in `decision-log/`. Use `/log-decision` to record a new decision, or ask the `decision-logger` agent to capture decisions automatically. See `decision-log/README.md`.
+Product decisions are captured in `decision-log/`. `/evaluate` produces the trade-off reasoning that feeds significant entries. Use `/log-decision` to record a new decision, or ask the `decision-logger` agent to capture decisions automatically. See `decision-log/README.md`.
 
 ## Routines (Schedule-Ready PM Tasks)
 
