@@ -179,6 +179,123 @@
   .repo-pill.pmos .dot { background: var(--line-pmos); }
   .repo-pill.aprf .dot { background: var(--line-aprf); }
 
+  /* ---------- Version history ---------- */
+
+  .masthead-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .masthead-intro {
+    flex: 1 1 26rem;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .version-history {
+    flex: 1 1 17rem;
+    max-width: 23rem;
+    background: var(--paper-raised);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 1.1rem 1.25rem 1.25rem;
+  }
+
+  .version-history-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.3rem;
+  }
+
+  .version-history h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .version-history-note {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin: 0 0 0.9rem;
+  }
+
+  .full-changelog {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-decoration: none;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--hairline);
+    white-space: nowrap;
+  }
+
+  .version-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .version-entry {
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 0 0.85rem;
+  }
+
+  .version-entry summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    padding: 0.6rem 0;
+    font-family: var(--font-mono);
+  }
+
+  .version-entry summary::-webkit-details-marker { display: none; }
+
+  .version-entry summary::before {
+    content: '▸';
+    color: var(--ink-faint);
+    font-size: 0.7rem;
+    transform: rotate(0deg);
+  }
+
+  .version-entry[open] summary::before { transform: rotate(90deg); }
+
+  .version-tag { font-weight: 700; color: var(--line-pmos); }
+  .version-date { color: var(--ink-faint); font-size: 0.75rem; }
+
+  .version-title {
+    font-family: var(--font-body);
+    color: var(--ink);
+    font-size: 0.85rem;
+    flex-basis: 100%;
+  }
+
+  .version-entry ul {
+    margin: 0 0 0.8rem;
+    padding-left: 1.1rem;
+    font-size: 0.83rem;
+    color: var(--ink-soft);
+  }
+
+  .version-entry li { margin-bottom: 0.35rem; }
+  .version-entry li:last-child { margin-bottom: 0; }
+
+  .version-entry li code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    background: var(--paper);
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+  }
+
   /* ---------- Map figure ---------- */
 
   .map-figure {
@@ -446,6 +563,7 @@
   @media (prefers-reduced-motion: no-preference) {
     .station-bullet { transition: transform 0.15s ease; }
     .station-card:hover .station-bullet { transform: scale(1.08); }
+    .version-entry summary::before { transition: transform 0.15s ease; }
   }
 </style>
 </head>
@@ -454,21 +572,54 @@
 <div class="page">
 
   <header class="masthead">
-    <p class="kicker">am-explore field map</p>
-    <h1>The Product Line</h1>
-    <p class="standfirst">
-      A route map through the product development lifecycle — every phase, and the AI skills, reviewer agents, and
-      templates that live there. Two lines run through it: <strong>PM OS</strong>, the day-to-day product lifecycle,
-      and <strong>Agent Production Readiness</strong>, which interchanges where a team is shipping an AI agent
-      specifically.
-    </p>
-    <div class="repo-pills">
-      <a class="repo-pill pmos" href="https://github.com/am-explore/pm-os-am-explore" data-goatcounter-click="click:masthead:repo-pill-pmos" target="_blank" rel="noopener">
-        <span class="dot"></span> pm-os-am-explore
-      </a>
-      <a class="repo-pill aprf" href="https://github.com/am-explore/agent-production-readiness-framework" data-goatcounter-click="click:masthead:repo-pill-aprf" target="_blank" rel="noopener">
-        <span class="dot"></span> agent-production-readiness-framework
-      </a>
+    <div class="masthead-row">
+      <div class="masthead-intro">
+        <p class="kicker">am-explore field map</p>
+        <h1>The Product Line</h1>
+        <p class="standfirst">
+          A route map through the product development lifecycle — every phase, and the AI skills, reviewer agents, and
+          templates that live there. Two lines run through it: <strong>PM OS</strong>, the day-to-day product lifecycle,
+          and <strong>Agent Production Readiness</strong>, which interchanges where a team is shipping an AI agent
+          specifically.
+        </p>
+        <div class="repo-pills">
+          <a class="repo-pill pmos" href="https://github.com/am-explore/pm-os-am-explore" data-goatcounter-click="click:masthead:repo-pill-pmos" target="_blank" rel="noopener">
+            <span class="dot"></span> pm-os-am-explore
+          </a>
+          <a class="repo-pill aprf" href="https://github.com/am-explore/agent-production-readiness-framework" data-goatcounter-click="click:masthead:repo-pill-aprf" target="_blank" rel="noopener">
+            <span class="dot"></span> agent-production-readiness-framework
+          </a>
+        </div>
+      </div>
+
+      <!-- VERSION HISTORY — keep to the 3 most recent entries, newest first, first one `open`.
+           Mirrors CHANGELOG.md; update both together when tagging a new release (see the
+           note at the top of CHANGELOG.md). To add a release: copy a .version-entry block,
+           put it first, and drop the oldest once there are already 3. -->
+      <aside class="version-history" aria-labelledby="version-history-heading">
+        <div class="version-history-head">
+          <h2 id="version-history-heading">Version History</h2>
+          <a class="full-changelog" href="https://github.com/am-explore/pm-os-am-explore/blob/main/CHANGELOG.md" data-goatcounter-click="click:masthead:full-changelog" target="_blank" rel="noopener">Full changelog →</a>
+        </div>
+        <p class="version-history-note">What's new since the last version — most recent first.</p>
+        <div class="version-list">
+
+          <details class="version-entry" open>
+            <summary>
+              <span class="version-tag">v2026-09-26</span>
+              <span class="version-date">Sep 26, 2026</span>
+              <span class="version-title">Intake and Trade-off Evaluation</span>
+            </summary>
+            <ul>
+              <li><strong>Added</strong> <code>/intake</code> — a front door for new requests; separates the problem from the proposed solution and routes it (fast-track, discover, evaluate, park, decline).</li>
+              <li><strong>Added</strong> <code>/evaluate</code> — weighs options against criteria set before scoring, states what's given up, and records the bet.</li>
+              <li><strong>Added</strong> the <code>intake/</code> register and two templates for the above.</li>
+              <li><strong>Added</strong> two map stations — Intake and Trade-off &amp; Evaluate — and rewired the loop-back to Intake.</li>
+            </ul>
+          </details>
+
+        </div>
+      </aside>
     </div>
   </header>
 

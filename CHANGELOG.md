@@ -1,5 +1,7 @@
 # Changelog
 > Newest first. One entry per dated release tag (`vYYYY-MM-DD`; a second release the same day gets `.2`, `.3`).
+>
+> **Maintenance:** `docs/index.html` shows a condensed "Version History" widget (in the masthead) mirroring the 3 most recent entries here. When you tag a new release, update both together — add a `.version-entry` block there (newest first, `open` on the first one) and drop the oldest once there are already 3. This file stays the full, un-condensed record either way.
 
 ## v2026-09-26 — Intake and Trade-off Evaluation
 Adds the two stages the lifecycle was missing: a front door for incoming requests, and a single place to weigh options and state what a choice costs.
