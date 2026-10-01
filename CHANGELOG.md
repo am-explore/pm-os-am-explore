@@ -3,6 +3,16 @@
 >
 > **Maintenance:** `docs/index.html` shows a condensed "Version History" widget (in the masthead) mirroring the 3 most recent entries here. When you tag a new release, update both together — add a `.version-entry` block there (newest first, `open` on the first one) and drop the oldest once there are already 3. This file stays the full, un-condensed record either way.
 
+## v2026-10-01 — Skill Evals and Cross-Model Panel
+Two quality tools: one to tell whether an edit to a skill actually helped, and one to get a review of a high-stakes document from models that cannot see each other's answers.
+
+- **New: `/skill-evals`** (`skills/automation/SKILL-skill-evals.md`) — a written test per skill: dev and holdout scenarios (including a negative control), 4-6 yes/no criteria, repeat runs, a measured noise floor, a grader separate from the producer, one change at a time, human approval of every kept edit. Deliberately does **not** auto-rewrite skills.
+- **New: `/panel`** (`skills/execution/SKILL-cross-model-panel.md`) — independent first-round review by 2-3 different vendors' models, optional anonymous rebuttal round (UPHOLD / REJECT / CONCEDE / MISSED), results grouped by finding with contested ones flagged, every finding verified against the document by a person. Starts with a **privacy gate**: nothing sensitive leaves the machine. No script shipped.
+- **New templates:** `templates/skill-evals.md`, `templates/panel-review.md` (round prompts + findings record).
+- **New folder:** `evals/` (README + a worked example, `intake-triage.md`, on a fictional product).
+- **Wiring:** `CLAUDE.md` (skill routing, commands, templates, Skill Evals section, persona-vs-cross-model note), `.github/copilot-instructions.md`, README, two new routers under `.claude/skills/`.
+- **Credits:** the keep-if-better loop follows Karpathy's autoresearch idea as applied in *Self-Improving Agent Skills*, and the panel protocol follows *LLM Panel Agent Team* by Jaret Arnold, both in Shubhamsaboo/awesome-llm-apps (Apache-2.0). Concepts only, no code copied; the holdout / noise-floor / separate-grader rules and the privacy gate are additions.
+
 ## v2026-09-26 — Intake and Trade-off Evaluation
 Adds the two stages the lifecycle was missing: a front door for incoming requests, and a single place to weigh options and state what a choice costs.
 

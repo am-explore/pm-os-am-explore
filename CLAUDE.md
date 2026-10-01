@@ -39,6 +39,8 @@ Skills in `skills/` activate based on conversation context. When a trigger match
 |-----------------|-------------------|
 | "intake", "new request", "someone asked for", "feature request", "triage this" | `skills/discovery/SKILL-intake-triage.md` |
 | "evaluate", "trade-off", "compare options", "go / no-go", "which should we do" | `skills/strategy/SKILL-tradeoff-evaluation.md` |
+| "second opinion", "cross-check", "blind review", "panel review" | `skills/execution/SKILL-cross-model-panel.md` |
+| "eval a skill", "test a skill", "did that edit help", "skill regression" | `skills/automation/SKILL-skill-evals.md` |
 | "discovery", "research", "opportunity" | `skills/discovery/SKILL-opportunity-solution-tree.md`, `skills/discovery/SKILL-user-interview.md` |
 | "PRD", "spec", "requirements" | `skills/execution/SKILL-prd-writing.md` |
 | "competitor", "market", "battlecard" | `skills/research/SKILL-competitive-research.md` |
@@ -60,6 +62,8 @@ These map triggers to skill files. In Claude Code they are available as native s
 |---------|-------------|---------------|
 | `/intake` | Triage a new request into a routing decision (front door) | `skills/discovery/SKILL-intake-triage.md`, `templates/intake-request.md` |
 | `/evaluate` | Weigh options and trade-offs; state what is given up | `skills/strategy/SKILL-tradeoff-evaluation.md`, `templates/tradeoff-evaluation.md` |
+| `/panel` | Vendor-independent blind review of a consequential document (privacy gate first) | `skills/execution/SKILL-cross-model-panel.md`, `templates/panel-review.md` |
+| `/skill-evals` | Test whether an edit to a skill made it better (dev + holdout scenarios, noise floor) | `skills/automation/SKILL-skill-evals.md`, `templates/skill-evals.md` |
 | `/discover` | Full discovery cycle: OST → assumptions → experiments | `skills/discovery/SKILL-opportunity-solution-tree.md`, `skills/discovery/SKILL-user-interview.md` |
 | `/strategy` | Product strategy canvas | `skills/strategy/SKILL-product-strategy.md` |
 | `/write-prd` | Full PRD with multi-agent review | `skills/execution/SKILL-prd-writing.md`, `templates/PRD-template.md` |
@@ -108,6 +112,8 @@ These are reviewer/monitor **persona definitions** — invoke them when you need
 | Debate Facilitator | `sub-agents/debate-facilitator.md` | Cross-reviewer dialogue, tension identification |
 | Synthesis Agent | `sub-agents/synthesis-agent.md` | Weighted recommendations, decision memos |
 
+**Persona review vs. cross-model review:** the debate above is one model playing several roles (breadth). `/panel` runs the same document past *different vendors' models* that cannot see each other's answers (independence). Use `/panel` for hard-to-reverse artifacts, and only after its privacy gate — the document leaves your machine. See `skills/execution/SKILL-cross-model-panel.md`.
+
 **Review commands** — read ALL sub-agent files and produce each review:
 - `/review-prd` — All 7 reviewers critique, then Debate Facilitator structures tensions, then Synthesis Agent produces weighted recommendations
 - `/review-strategy` — Same multi-agent debate flow for strategy docs
@@ -117,6 +123,8 @@ These are reviewer/monitor **persona definitions** — invoke them when you need
 
 - Intake request (front-door triage record — problem, evidence, route): `templates/intake-request.md`
 - Trade-off evaluation (options, weighted criteria, what is given up, the bet): `templates/tradeoff-evaluation.md`
+- Panel review (cross-model blind review prompts + findings record): `templates/panel-review.md`
+- Skill eval (scenarios, yes/no criteria, results log for one skill): `templates/skill-evals.md`
 - PRD template (full, with ISC acceptance criteria + multi-agent review checklist): `templates/PRD-template.md`
 - PRD template (lean, 1.5-2pg scannable — use when the full PRD is overkill): `templates/prd-lean-thesis.md`
 - Experiment template: `templates/experiment-template.md`
@@ -132,6 +140,10 @@ These are reviewer/monitor **persona definitions** — invoke them when you need
 ## Intake Register
 
 Incoming requests are logged in `intake/register.md` (full records in `intake/requests/`). Every request ends in an explicit route — Fast-track, Discover, Evaluate, Park (with a revisit trigger), Decline, or Duplicate — so nothing is lost and nothing is decided by volume of voice. Use `/intake` to triage. See `intake/README.md`. Repeated declines become anti-bets in `/strategy`.
+
+## Skill Evals
+
+Each skill you rely on can have a written test in `evals/` — a few realistic scenarios, yes/no criteria, and a results log. Edit a skill, re-run its eval, and keep the edit only if it beats the measured noise without hurting the holdout scenarios. Evals target the framework file in `skills/`, not the router in `.claude/skills/`. Use `/skill-evals`. See `evals/README.md`.
 
 ## Decision Log
 

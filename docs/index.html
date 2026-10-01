@@ -606,6 +606,19 @@
 
           <details class="version-entry" open>
             <summary>
+              <span class="version-tag">v2026-10-01</span>
+              <span class="version-date">Oct 1, 2026</span>
+              <span class="version-title">Skill Evals and Cross-Model Panel</span>
+            </summary>
+            <ul>
+              <li><strong>Added</strong> <code>/skill-evals</code> — a written test per skill with dev and holdout scenarios, a measured noise floor and a separate grader, so an edit has to prove it helped.</li>
+              <li><strong>Added</strong> <code>/panel</code> — a blind review of a high-stakes document by models from different vendors, grouped by finding, behind a privacy gate.</li>
+              <li><strong>Added</strong> the <code>evals/</code> folder with a worked example, plus two templates.</li>
+            </ul>
+          </details>
+
+          <details class="version-entry">
+            <summary>
               <span class="version-tag">v2026-09-26</span>
               <span class="version-date">Sep 26, 2026</span>
               <span class="version-title">Intake and Trade-off Evaluation</span>
@@ -1194,6 +1207,12 @@
       the <strong>Closed-World Constraint Check</strong> in <code>hooks/prd-quality-gate.md</code> is inspired by the
       closed-world validation approach in
       <a href="https://github.com/vishalmdi/ai-native-pm-os" data-goatcounter-click="click:footer:vishalmdi-ai-native-pm-os" target="_blank" rel="noopener">vishalmdi/ai-native-pm-os</a>.
+    </p>
+    <p>
+      Two more, from <a href="https://github.com/Shubhamsaboo/awesome-llm-apps" data-goatcounter-click="click:footer:awesome-llm-apps" target="_blank" rel="noopener">Shubhamsaboo/awesome-llm-apps</a> (Apache 2.0; concepts, not copied code):
+      <code>/skill-evals</code> follows the keep-if-better loop of the <em>Self-Improving Agent Skills</em> example, which itself builds on
+      <a href="https://github.com/karpathy/autoresearch" data-goatcounter-click="click:footer:karpathy-autoresearch" target="_blank" rel="noopener">Andrej Karpathy's autoresearch</a>;
+      <code>/panel</code> follows the two-round blind review of the <em>LLM Panel Agent Team</em> example by Jaret Arnold.
     </p>
     <p>Read the write-up: <a href="https://amexplore.substack.com/p/beyond-the-prototype-the-enterprise" data-goatcounter-click="click:footer:substack" target="_blank" rel="noopener">Beyond the Prototype (Substack)</a></p>
   </footer>

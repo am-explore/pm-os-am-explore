@@ -46,7 +46,7 @@ claude
 - `CLAUDE.md` is auto-loaded every session with `@` imports that pull in `SOUL.md` and all `context-library/` files
 - `.claude/rules/` contains operating principles and output standards (auto-loaded)
 - `.claude/agents/` contains 7 specialist reviewer subagents (available via `/agents`)
-- `.claude/skills/` contains 18 skill router files — invoke via `/intake`, `/evaluate`, `/write-prd`, `/discover`, `/strategy`, etc.
+- `.claude/skills/` contains 20 skill router files — invoke via `/intake`, `/evaluate`, `/panel`, `/skill-evals`, `/write-prd`, `/discover`, `/strategy`, etc.
 - Full skill frameworks live in `skills/` — the router files point Claude to them
 
 </details>
@@ -149,12 +149,16 @@ These are persona/prompt definitions, not always-on background agents. Invoke th
 | Debate Facilitator | `sub-agents/debate-facilitator.md` | Structures cross-reviewer tensions and agreements |
 | Synthesis Agent | `sub-agents/synthesis-agent.md` | Produces weighted must-fix / should-fix / consider recommendations |
 
+The debate above is one model playing several roles. For a review from *different vendors' models* that cannot see each other's answers, use `/panel` (`skills/execution/SKILL-cross-model-panel.md`) — after its privacy gate, since the document leaves your machine.
+
 ### Templates
 
 | Template | Use for |
 |----------|---------|
 | `templates/intake-request.md` | Triage record for an incoming request — problem, evidence, route |
 | `templates/tradeoff-evaluation.md` | Options, weighted criteria, what is given up, the bet |
+| `templates/panel-review.md` | Cross-model blind review: round prompts + findings record |
+| `templates/skill-evals.md` | Scenarios, yes/no criteria and results log for testing one skill |
 | `templates/PRD-template.md` | New feature or initiative briefs |
 | `templates/experiment-template.md` | A/B tests and growth experiments |
 | `templates/decision-template.md` | Product decision records |
@@ -253,6 +257,7 @@ pm-os/
 │   ├── strategy/
 │   │   └── SKILL-product-strategy.md
 │   ├── execution/
+│   │   ├── SKILL-cross-model-panel.md
 │   │   ├── SKILL-prd-writing.md
 │   │   ├── SKILL-roadmap.md
 │   │   └── SKILL-stakeholder-communication.md
@@ -265,7 +270,8 @@ pm-os/
 │   ├── design/
 │   │   └── SKILL-product-design-review.md
 │   └── automation/
-│       └── SKILL-routine-setup.md
+│       ├── SKILL-routine-setup.md
+│       └── SKILL-skill-evals.md
 ├── sub-agents/             ← Specialist reviewer personas
 │   ├── engineer-reviewer.md
 │   ├── designer-reviewer.md
@@ -279,10 +285,15 @@ pm-os/
 ├── templates/              ← Document templates
 │   ├── intake-request.md       ← Front-door triage record
 │   ├── tradeoff-evaluation.md  ← Options, criteria, trade-offs, the bet
+│   ├── panel-review.md         ← Cross-model blind review prompts and record
+│   ├── skill-evals.md          ← Test one skill: scenarios, criteria, results log
 │   ├── PRD-template.md
 │   ├── experiment-template.md
 │   ├── decision-template.md    ← Product decision records
 │   └── routine-template.md     ← Custom routine configuration
+├── evals/                  ← A written test per skill (scenarios, criteria, results log)
+│   ├── README.md
+│   └── intake-triage.md        ← Worked example (fictional product)
 ├── intake/                 ← Front door: register of incoming requests and how each was routed
 │   ├── README.md
 │   ├── register.md
@@ -319,6 +330,8 @@ These map trigger words to skill files. **In Claude Code** they are native slash
 |---------|-------------|
 | `/intake [request]` | Triage a new request → Fast-track / Discover / Evaluate / Park / Decline |
 | `/evaluate [decision]` | Weigh options and trade-offs; state what is given up and the bet |
+| `/panel [document]` | Blind cross-model review of a consequential document (privacy gate first) |
+| `/skill-evals [skill]` | Test whether an edit to a skill made it better |
 | `/discover` | Full discovery cycle: OST → assumptions → experiments |
 | `/strategy` | Product strategy canvas |
 | `/write-prd [topic]` | Full PRD with sub-agent review |
@@ -416,6 +429,8 @@ This OS is built on the conviction that:
 - Roger Martin: Strategy as integrated choices
 - Reforge / Brian Balfour: Growth loops and retention
 - phuryn/pm-skills: Open source PM skills marketplace (MIT License)
+- Andrej Karpathy, karpathy/autoresearch, and the *Self-Improving Agent Skills* example in Shubhamsaboo/awesome-llm-apps (Apache-2.0): the keep-if-better, one-change-at-a-time idea behind `/skill-evals` (concept only)
+- *LLM Panel Agent Team* by Jaret Arnold, in Shubhamsaboo/awesome-llm-apps (Apache-2.0): the two-round blind review and rebuttal protocol behind `/panel` (concept only)
 
 ---
 

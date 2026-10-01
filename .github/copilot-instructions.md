@@ -35,6 +35,8 @@ When conversation matches these triggers, read the corresponding skill file and 
 |---------|-----------|
 | intake, new request, feature request, triage | `skills/discovery/SKILL-intake-triage.md` |
 | evaluate, trade-off, compare options, go / no-go | `skills/strategy/SKILL-tradeoff-evaluation.md` |
+| second opinion, cross-check, blind review, panel review | `skills/execution/SKILL-cross-model-panel.md` |
+| eval a skill, test a skill, did that edit help | `skills/automation/SKILL-skill-evals.md` |
 | discovery, research, opportunity | `skills/discovery/SKILL-opportunity-solution-tree.md`, `skills/discovery/SKILL-user-interview.md` |
 | PRD, spec, requirements | `skills/execution/SKILL-prd-writing.md` |
 | competitor, market, battlecard | `skills/research/SKILL-competitive-research.md` |
