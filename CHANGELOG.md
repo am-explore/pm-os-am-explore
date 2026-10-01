@@ -3,6 +3,14 @@
 >
 > **Maintenance:** `docs/index.html` shows a condensed "Version History" widget (in the masthead) mirroring the 3 most recent entries here. When you tag a new release, update both together — add a `.version-entry` block there (newest first, `open` on the first one) and drop the oldest once there are already 3. This file stays the full, un-condensed record either way.
 
+## v2026-10-01.2 — First eval baseline (intake triage)
+First real run of `/skill-evals` on a skill, plus what it taught us about the eval itself.
+
+- **`evals/intake-triage.md`:** baseline recorded — dev 85.1%, holdout 84.4%, measured noise floor 4.7 / 13.5 pts (36 runs, graded in separate sessions on a different model).
+- **Eval fix:** the shared stub context is now the complete list the producer and grader must both receive. The first grading was discarded because the grader had a shorter context than the producer.
+- **Found:** the criteria for solution-smuggle (C2), tag scope (C3), the n/a rule (C5) and the under-specified-request reply (C6) are ambiguous and must be revised before the eval can judge an edit; a human spot-check of one third of verdicts is written up in the file.
+- **Found in the skill itself:** problem statements often restate the requested solution as the obstacle, and evidence tags stop at the Evidence list.
+
 ## v2026-10-01 — Skill Evals and Cross-Model Panel
 Two quality tools: one to tell whether an edit to a skill actually helped, and one to get a review of a high-stakes document from models that cannot see each other's answers.
 
