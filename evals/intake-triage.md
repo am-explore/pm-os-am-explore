@@ -4,7 +4,7 @@
 
 **Skill file under test:** `skills/discovery/SKILL-intake-triage.md`
 **Created:** 2026-10-01
-**Noise floor:** dev **4.7 pts**, holdout **13.5 pts** (two unchanged runs, 2026-10-01; holdout has only 2 scenarios, so it can only detect large changes). An edit must beat these.
+**Noise floor (criteria v2):** dev **5.6 pts**, holdout **9.6 pts** (two unchanged passes, 2026-10-01; grader agrees with itself on 96.3% of verdicts). An edit must beat these. Holdout has only 2 scenarios.
 
 ---
 
@@ -54,18 +54,18 @@
 
 ---
 
-## Criteria
+## Criteria (v2, revised 2026-10-01 after the first baseline's spot-check)
 
 | # | Question (yes/no) | Pass condition | Fail condition | Skill requirement it checks |
 |---|-------------------|----------------|----------------|-----------------------------|
-| C1 | Does the output end in exactly one named route? | One of Fast-track / Discover / Evaluate / Park / Decline / Duplicate is stated | No route, two routes, or an unlisted route ("revisit later") | "One front door and one outcome" |
-| C2 | Is the problem stated as persona + job + obstacle + consequence, without the requested solution inside it? | All four slots present or the missing ones named; the solution (e.g. "dark mode toggle") is not the problem statement | Problem statement is the feature request restated, or missing slots are silently invented | Step 2 four-slot problem statement |
-| C3 | Is every evidence claim tagged [Fact], [Inference] or [Assumption]? | Each claim about who/how many/how urgent carries a tag | Any untagged claim, or a persona not in the stub context treated as real without [Assumption] | Step 3 closed-world check, Operating Principle #6 |
-| C4 | If the route is Park, is there a revisit trigger (a date or a condition)? | A concrete trigger is written | Park with no trigger, or a vague one ("later") | "A Park without a revisit trigger is a Decline in disguise" |
-| C5 | Does it check the register and anti-bets before routing? | Mentions the existing register row or the anti-bet when relevant to the scenario | Ignores a duplicate or an anti-bet that the stub context contains | Steps 4-5 |
-| C6 | Does it include a draft reply to the requester? | A 2-4 sentence reply stating understood problem, route and reason | Missing, or a vague "we'll look into it" | Step 7 |
+| C1 | Does the output end in exactly one named route? | One of Fast-track / Discover / Evaluate / Park / Decline / Duplicate is stated as the route | No route, two routes, or an unlisted route (e.g. "revisit later") | "One front door and one outcome" |
+| C2 | Is the problem statement free of the requested solution? | The job and obstacle describe what the person is trying to get done and what stops them **without** naming the requested feature as missing and without a synonym for it. Slots that are unknown are named unknown. | The obstacle is the absence of the requested feature ("has no X", "lacks X", "can't X" where X is what was asked for, or a paraphrase of it), or the job is "use the requested feature". *Test: delete the requested feature's name and its paraphrases from the sentence — is a real problem still left?* | Step 2 four-slot problem statement; "A request is a symptom with a solution attached. Detach them." |
+| C3 | Are all claims about users, counts, demand, urgency or effects tagged, and tagged correctly? | Every such sentence **anywhere in the output** (including the rationale and any counter-argument) that is not stated in the stub context or the request wording carries [Fact], [Inference] or [Assumption]; and each [Fact] is directly supported by the stub context or the request. Restating stub context, reasoning, and recommendations need no tag. | Any untagged claim of that kind anywhere in the output, any tag other than the three, any [Fact] that is really an inference or guess, or a persona not in the stub context treated as real | Step 3 closed-world check; `.claude/rules/output-standards.md` (every substantive claim); Operating Principle #6 |
+| C4 | If the route is Park, is there a revisit trigger (a date or a condition)? | A concrete trigger is written | Park with no trigger or a vague one ("later"). **n/a if the route is not Park.** | "A Park without a revisit trigger is a Decline in disguise" |
+| C5 | Where it applies, does it use the register or the anti-bet? | **Applies only to a request that duplicates a register row, or that is about team collaboration/sharing** (the anti-bet). Pass: it names that register row or that anti-bet. | Applies but is not named. **n/a for every other request.** | Steps 4-5 |
+| C6 | Is there an appropriate draft reply to the requester? | 2-5 sentences. If the output routed the request: it states the understood problem (not only the requested feature) and the reason. If the output itself says three or more problem slots are unknown: it asks specific clarifying questions instead. | No reply; a reply that only repeats the requested feature; or a vague "we'll look into it" with no reason and no question | Step 7 |
 
-*Not every criterion applies to every scenario (C4 only when the route is Park). The grader marks a criterion "n/a" only when its precondition is absent; n/a is excluded from the total.*
+*Criteria v1 are preserved in this file's git history (`2514232`). Results logged before this revision were scored on v1.*
 
 ---
 
@@ -85,6 +85,9 @@ Newest first. One row per run. One change per row.
 
 | Date | Skill file @ commit | Change under test | Dev score | Holdout score | Beat noise floor? | Decision | Notes |
 |------|--------------------|-------------------|-----------|---------------|-------------------|----------|-------|
+| 2026-10-01 | scratch (edit 1 + edit 2) | **Edit 2**: tags required across the whole output, not only Evidence (on top of edit 1) | 85.2% (46/54) | 79.2% (19/24) | **No** vs edit 1: dev +0.0; holdout +20.9 | **Revert** | The targeted criterion C3 barely moved (6/18 → 7/18). The holdout gain came from C6, which this edit does not touch, so it is treated as noise. Remaining C3 fails are mostly claims in the counter-argument / strategy-fit. |
+| 2026-10-01 | scratch (edit 1) | **Edit 1**: Step 2 "detach the solution completely" rule + example not used in any scenario | 85.2% (46/54) | 58.3% (14/24) | **Yes**: dev +25.0 (floor 5.6); holdout +14.9 (floor 9.6) | **Keep** | C2 9/36 → 18/18. Side effect: CSV-export request moved from Park (5 of 6) to Discover (3 of 3) because an honestly "unknown" problem now reads as poorly understood. No criterion measures route appropriateness. 18 runs vs 36 for the baseline. |
+| 2026-10-01 | `2514232` | baseline v2 (criteria revised; same 36 outputs regraded) | 60.2% (65/108; passes 57.4 / 63.0) | 43.4% (23/53; passes 48.1 / 38.5) | n/a | Baseline recorded | Stricter criteria expose the real weaknesses: C2 9/36, C3 4/36. |
 | 2026-10-01 | `8bb024d` | baseline (2 unchanged passes) | **85.1%** (97/114; passes 87.5 / 82.8) | **84.4%** (54/64; passes 90.9 / 77.4) | n/a | Baseline recorded | Criteria C2, C3, C5 (n/a rule) and C6 need revising before this eval can judge an edit; see Baseline notes. |
 
 ---
@@ -112,3 +115,13 @@ Newest first. One row per run. One change per row.
 - Gap: no guidance on what the requester reply should look like for an under-specified request.
 
 **Before judging any edit, revise the criteria and re-baseline:** sharpen C2 ("the obstacle must not be 'lacks [the requested solution]'"), fix C3's scope and add a correct-tag check, give C5 a deterministic n/a rule, and give C6 an under-specified-request carve-out. Then candidate first edits to the skill: a Step 2 rule against restating the solution as the obstacle, and tags required in the Why-this-route field.
+
+---
+
+## Round 2 notes (2026-10-01): criteria v2, then two edits
+
+- **v2 criteria are consistent.** Grading pass A twice gave the same verdict on 104 of 108 (96.3%); the four flips were all C3 or C6.
+- **Edit 1 kept.** It fixes the skill's headline failure (the problem statement restating the request) without touching anything else the criteria measure. Watch the side effect on routes: with the problem honestly "unknown", more requests go to Discover and fewer to Park. Whether that is right is a judgment call the eval does not make; consider adding a route-appropriateness scenario.
+- **Edit 2 reverted.** Requiring tags across the whole output did not move C3. Remaining failures are mostly claims inside the counter-argument and strategy-fit, plus a few borderline grader calls. One failure is a harness limit: the producer reads the real repo (for example noticing `intake/requests/` is empty), and the stub context does not cover repo files. A better edit may need to restructure the output format (a dedicated tagged "counter-argument" field) rather than restate the rule.
+- **Small samples.** Each edit was tested on one 18-run pass against a 36-run baseline. Treat the +25 as a clear win and the smaller differences as suggestive.
+- **Not yet checked by the PM:** the spot-check from round 1 was by the assistant. Please read a few runs yourself.

@@ -32,6 +32,10 @@ Record who asked, when, through what channel, and their exact words. Do not para
 Restate as: **"[Persona] is trying to [job] but [obstacle], which causes [consequence]."**
 If you can't fill all four slots, that's information: the request is under-specified. Note what's missing rather than inventing it.
 
+**Detach the solution completely.** The obstacle must be a situation or pain the person is in. It must never be "the product has no X" or "can't do X" where X is the thing they asked for, and never a paraphrase of it. Test: delete the requested feature and any synonym from your sentence. If no real problem is left, that slot is unknown. Write it as unknown instead of rephrasing the request.
+- Request "add a Kanban board" — ✗ "A user is trying to organize work but the product has no Kanban board." ✓ "A user is trying to keep track of in-progress work but [obstacle unknown], which causes [consequence unknown]."
+
+
 ### Step 3: Ground it (closed-world check)
 - **Persona:** does the person/segment exist in `context-library/users.md`? If not, tag **[Assumption]** — do not invent a segment (Operating Principle #6).
 - **Product area:** does the affected feature exist in `context-library/product.md`?

@@ -3,6 +3,15 @@
 >
 > **Maintenance:** `docs/index.html` shows a condensed "Version History" widget (in the masthead) mirroring the 3 most recent entries here. When you tag a new release, update both together — add a `.version-entry` block there (newest first, `open` on the first one) and drop the oldest once there are already 3. This file stays the full, un-condensed record either way.
 
+## v2026-10-01.3 — Intake: detach the solution from the problem
+First skill edit judged by `/skill-evals`, and the first one it rejected.
+
+- **`skills/discovery/SKILL-intake-triage.md` (Step 2):** new "detach the solution completely" rule. The obstacle must never be "the product has no X" where X is what was asked for; if deleting the requested feature leaves no real problem, that slot is written as unknown. Includes a worked example that is not one of the eval's scenarios.
+- **Measured:** dev 60.2% → 85.2% (+25.0, noise floor 5.6); holdout 43.4% → 58.3% (+14.9, noise floor 9.6); the targeted criterion went from 9/36 to 18/18. One 18-run pass per edit against a 36-run baseline, so treat the size as indicative.
+- **Side effect to know about:** with the problem honestly "unknown", more requests route to Discover and fewer to Park (CSV-export request: Park 5 of 6 → Discover 3 of 3). The eval does not judge whether that is better.
+- **Rejected by the eval:** a second edit (require tags across the whole output) did not move its target criterion and was reverted; logged in `evals/intake-triage.md`.
+- **Eval revised:** criteria C2, C3, C5, C6 rewritten to be unambiguous (grader self-agreement 96.3%); results log and round-2 notes added.
+
 ## v2026-10-01.2 — First eval baseline (intake triage)
 First real run of `/skill-evals` on a skill, plus what it taught us about the eval itself.
 

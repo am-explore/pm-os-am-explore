@@ -38,4 +38,4 @@ Match the framework file: `skills/discovery/SKILL-intake-triage.md` → `evals/i
 
 | Skill | Eval file | Baseline | Last run |
 |-------|-----------|----------|----------|
-| Intake & Triage | `intake-triage.md` | dev 85.1% / holdout 84.4% (criteria need revising) | 2026-10-01 |
+| Intake & Triage | `intake-triage.md` | dev 60.2% / holdout 43.4% (criteria v2); edit 1 kept → dev 85.2% / holdout 58.3% | 2026-10-01 |

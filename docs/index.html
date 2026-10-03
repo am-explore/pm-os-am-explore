@@ -606,6 +606,19 @@
 
           <details class="version-entry" open>
             <summary>
+              <span class="version-tag">v2026-10-01.3</span>
+              <span class="version-date">Oct 3, 2026</span>
+              <span class="version-title">Intake: detach the solution</span>
+            </summary>
+            <ul>
+              <li><strong>Changed</strong> <code>/intake</code> — the problem statement can no longer restate the requested feature as the obstacle; if nothing is left, the slot is written as unknown.</li>
+              <li><strong>Measured</strong> with <code>/skill-evals</code>: dev 60% to 85%, holdout 43% to 58%, both beating the noise floor. Side effect: more requests route to Discover, fewer to Park.</li>
+              <li><strong>Rejected</strong> a second edit that the eval showed did nothing for its target.</li>
+            </ul>
+          </details>
+
+          <details class="version-entry">
+            <summary>
               <span class="version-tag">v2026-10-01.2</span>
               <span class="version-date">Oct 1, 2026</span>
               <span class="version-title">First eval baseline</span>
@@ -629,19 +642,6 @@
             </ul>
           </details>
 
-          <details class="version-entry">
-            <summary>
-              <span class="version-tag">v2026-09-26</span>
-              <span class="version-date">Sep 26, 2026</span>
-              <span class="version-title">Intake and Trade-off Evaluation</span>
-            </summary>
-            <ul>
-              <li><strong>Added</strong> <code>/intake</code> — a front door for new requests; separates the problem from the proposed solution and routes it (fast-track, discover, evaluate, park, decline).</li>
-              <li><strong>Added</strong> <code>/evaluate</code> — weighs options against criteria set before scoring, states what's given up, and records the bet.</li>
-              <li><strong>Added</strong> the <code>intake/</code> register and two templates for the above.</li>
-              <li><strong>Added</strong> two map stations — Intake and Trade-off &amp; Evaluate — and rewired the loop-back to Intake.</li>
-            </ul>
-          </details>
 
         </div>
       </aside>
